@@ -13,6 +13,8 @@
 		BD63B15624AE26020015236D /* LICENSE.md in Resources */ = {isa = PBXBuildFile; fileRef = BD49661924A3605800A81F0B /* LICENSE.md */; };
 		BD75B6BA25DAA6680071F55E /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = BD75B6B925DAA6680071F55E /* Credits.rtf */; };
 		BD78FDC224C2F6530091A854 /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD78FDC124C2F6530091A854 /* MainWindowController.swift */; };
+		BD7AB18027F1C70800CEC589 /* Theme in Frameworks */ = {isa = PBXBuildFile; productRef = BD7AB17F27F1C70800CEC589 /* Theme */; };
+		BD7AB18227F1C71000CEC589 /* Theme in Frameworks */ = {isa = PBXBuildFile; productRef = BD7AB18127F1C71000CEC589 /* Theme */; };
 		BD8D4E0C27B58900007011A5 /* AUv3-DSP-Headers in Frameworks */ = {isa = PBXBuildFile; productRef = BD8D4E0B27B58900007011A5 /* AUv3-DSP-Headers */; };
 		BD8D4E0E27B58900007011A5 /* AUv3-Support in Frameworks */ = {isa = PBXBuildFile; productRef = BD8D4E0D27B58900007011A5 /* AUv3-Support */; };
 		BD8D4E1027B58900007011A5 /* AUv3-Support-iOS in Frameworks */ = {isa = PBXBuildFile; productRef = BD8D4E0F27B58900007011A5 /* AUv3-Support-iOS */; };
@@ -187,6 +189,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD7AB18027F1C70800CEC589 /* Theme in Frameworks */,
 				BDB7CE9E249FC152009580D5 /* Accelerate.framework in Frameworks */,
 				BD8D4E1027B58900007011A5 /* AUv3-Support-iOS in Frameworks */,
 				C4737B0B2231D930002CAD0B /* AudioToolbox.framework in Frameworks */,
@@ -214,6 +217,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD7AB18227F1C71000CEC589 /* Theme in Frameworks */,
 				BD8D4E1227B58900007011A5 /* AUv3-Support-macOS in Frameworks */,
 				BDB7CE93249EC556009580D5 /* Accelerate.framework in Frameworks */,
 				BDC48CF927B5BAE1005974D7 /* AudioToolbox.framework in Frameworks */,
@@ -421,6 +425,7 @@
 			name = "iOS App";
 			packageProductDependencies = (
 				BD8D4E0F27B58900007011A5 /* AUv3-Support-iOS */,
+				BD7AB17F27F1C70800CEC589 /* Theme */,
 			);
 			productName = "AUv3Filter iOS";
 			productReference = C437FE3A222367A6008D6C09 /* SimplyChorusHost.app */;
@@ -472,6 +477,7 @@
 			name = SimplyChorus;
 			packageProductDependencies = (
 				BD8D4E1127B58900007011A5 /* AUv3-Support-macOS */,
+				BD7AB18127F1C71000CEC589 /* Theme */,
 			);
 			productName = "AUv3Filter macOS";
 			productReference = C437FE7A2223688D008D6C09 /* SimplyChorus.app */;
@@ -1579,6 +1585,14 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		BD7AB17F27F1C70800CEC589 /* Theme */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Theme;
+		};
+		BD7AB18127F1C71000CEC589 /* Theme */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Theme;
+		};
 		BD8D4E0B27B58900007011A5 /* AUv3-DSP-Headers */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = BD8D4E0A27B58900007011A5 /* XCRemoteSwiftPackageReference "AUv3Support" */;

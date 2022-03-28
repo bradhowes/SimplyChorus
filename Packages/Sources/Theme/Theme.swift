@@ -12,7 +12,7 @@ public enum Theme {
   }
 
   public static func color(_ kind: ColorKind) -> UIColor {
-    guard let color = UIColor(named: kind.rawValue, in: Bundle.module, compatibleWith: nil) else {
+    guard let color = UIColor(named: kind.rawValue, in: Bundle.main, compatibleWith: nil) else {
       fatalError("failed to locate color '\(kind.rawValue)'")
     }
     return color

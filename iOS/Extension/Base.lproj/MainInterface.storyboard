@@ -23,7 +23,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="v1.1.0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sOK-vA-Qxl" userLabel="APP_VERSION">
-                                <rect key="frame" x="545" y="250" width="37.5" height="18"/>
+                                <rect key="frame" x="541.5" y="254.5" width="37.5" height="18"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <bool key="isElement" value="NO"/>
                                 </accessibility>
@@ -31,9 +31,9 @@
                                 <color key="textColor" name="title"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" text="Flanger" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vbj-fp-p3P">
-                                <rect key="frame" x="84.5" y="107" width="498" height="161"/>
-                                <fontDescription key="fontDescription" name="Desdemona" family="Desdemona" pointSize="140"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" text="Chorus" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vbj-fp-p3P">
+                                <rect key="frame" x="88.5" y="102.5" width="490.5" height="170"/>
+                                <fontDescription key="fontDescription" name="Desdemona" family="Desdemona" pointSize="148"/>
                                 <color key="textColor" name="title"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -539,13 +539,13 @@
     </scenes>
     <resources>
         <namedColor name="knob">
-            <color red="1" green="0.57599997520446777" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.22599999606609344" blue="0.84700000286102295" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="label">
-            <color red="1" green="0.76399999856948853" blue="0.36700001358985901" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.54100000858306885" blue="0.84700000286102295" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="title">
-            <color red="1" green="0.5" blue="0.0" alpha="0.34999999403953552" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.54100000858306885" blue="0.84700000286102295" alpha="0.34700000286102295" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

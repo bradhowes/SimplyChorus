@@ -32,17 +32,17 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wUu-Yz-l9v" userLabel="v1.0.0">
-                    <rect key="frame" x="500" y="59" width="40" height="17"/>
+                    <rect key="frame" x="504" y="64" width="40" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="v1.1.0" id="p30-Bk-a8R" userLabel="APP_VERSION">
                         <font key="font" metaFont="system" size="14"/>
                         <color key="textColor" name="title"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2pJ-Hs-NbD" userLabel="Flange">
-                    <rect key="frame" x="48" y="59" width="492" height="183"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" title="Flange" id="Jce-ED-VFc" userLabel="Flange">
-                        <font key="font" size="160" name="Desdemona"/>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2pJ-Hs-NbD" userLabel="Title">
+                    <rect key="frame" x="43" y="64" width="501" height="172"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" allowsUndo="NO" title="Chorus" id="Jce-ED-VFc" userLabel="Title">
+                        <font key="font" size="150" name="Desdemona"/>
                         <color key="textColor" name="title"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
@@ -384,10 +384,10 @@
     </objects>
     <resources>
         <namedColor name="label">
-            <color red="1" green="0.76399999856948853" blue="0.36700001358985901" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.54100000858306885" blue="0.84700000286102295" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="title">
-            <color red="1" green="0.5" blue="0.0" alpha="0.34999999403953552" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.89415323734283447" green="0.65339922904968262" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
