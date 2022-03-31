@@ -2,6 +2,8 @@
 
 #pragma once
 
+#include <mach/mach.h>
+
 #import <algorithm>
 #import <numeric>
 #import <string>
@@ -176,6 +178,30 @@ private:
                            [&](AUValue left, AUValue right) { return left + delayLine.read(right); }) / TapCount;
   }
 
+  void updateCPUUsage() noexcept {
+    thread_array_t threads;
+    mach_msg_type_number_t threadCount;
+    if (task_threads(mach_task_self(), &threads, &threadCount) != KERN_SUCCESS) {
+      return;
+    }
+
+    double usage = 0;
+    for (int i = 0; i < threadCount; i++) {
+      thread_info_data_t     threadInfo;
+      mach_msg_type_number_t threadInfoCount = THREAD_INFO_MAX;
+      if (thread_info(threads[i], THREAD_BASIC_INFO, (thread_info_t) threadInfo, &threadInfoCount) != KERN_SUCCESS) {
+        usage = -1;
+        break;
+      }
+      auto info = (thread_basic_info_t) threadInfo;
+      if ((info->flags & TH_FLAGS_IDLE) == 0) {
+        usage += double(info->cpu_usage) / TH_USAGE_SCALE;
+      }
+    }
+    vm_deallocate(mach_task_self(), (vm_offset_t) threads, threadCount * sizeof(thread_t));
+    cpuUsage_ = usage;
+  }
+
   DSPHeaders::Parameters::RampingParameter<AUValue> rate_;
   DSPHeaders::Parameters::PercentageParameter<AUValue> depth_;
   DSPHeaders::Parameters::MillisecondsParameter<AUValue> delay_;
@@ -190,4 +216,6 @@ private:
   DelayIndices evenDelays_;
   DelayIndices oddDelays_;
   AUAudioFrameCount rampRemaining_;
+
+  double cpuUsage_{};
 };

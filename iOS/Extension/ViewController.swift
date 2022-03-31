@@ -29,6 +29,10 @@ extension Knob: AUParameterValueProvider, RangedControl {}
   @IBOutlet weak var rateValueLabel: Label!
   @IBOutlet weak var rateTapEdit: UIView!
 
+  @IBOutlet weak var altRateControl: Knob!
+  @IBOutlet weak var altRateValueLabel: Label!
+  @IBOutlet weak var altRateTapEdit: UIView!
+
   @IBOutlet weak var delayControl: Knob!
   @IBOutlet weak var delayValueLabel: Label!
   @IBOutlet weak var delayTapEdit: UIView!
@@ -48,7 +52,8 @@ extension Knob: AUParameterValueProvider, RangedControl {}
   @IBOutlet weak var odd90Control: Switch!
 
   private lazy var controls: [ParameterAddress: [(Knob, Label, UIView)]] = [
-    .rate: [(rateControl, rateValueLabel, rateTapEdit)],
+    .rate: [(rateControl, rateValueLabel, rateTapEdit),
+           (altRateControl, altRateValueLabel, altRateTapEdit)],
     .delay: [(delayControl, delayValueLabel, delayTapEdit)],
     .depth: [(depthControl, depthValueLabel, depthTapEdit)],
     .wet: [(wetMixControl, wetMixValueLabel, wetMixTapEdit)],

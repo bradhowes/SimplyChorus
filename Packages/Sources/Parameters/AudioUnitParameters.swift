@@ -70,6 +70,7 @@ extension AudioUnitParameters {
   /// Apply a factory preset -- user preset changes are handled by changing AUParameter values through the audio unit's
   /// `fullState` attribute.
   public func useFactoryPreset(_ preset: AUAudioUnitPreset) {
+    os_log(.info, log: log, "useFactoryPreset - %d '%{public}s'", preset.number, preset.name)
     if preset.number >= 0 {
       setValues(factoryPresetValues[preset.number].preset)
     }
