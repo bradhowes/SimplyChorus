@@ -25,7 +25,9 @@ public final class AudioUnitParameters: NSObject, ParameterSource {
     ("Cadet", .init(rate: 1.68, delay: 8.3, depth: 100, dry: 50, wet: 100, odd90: 0)),
     ("Wide Cadet", .init(rate: 1.68, delay: 8.3, depth: 100, dry: 50, wet: 100, odd90: 1)),
     ("Wavy", .init(rate: 5.1, delay: 8.3, depth: 100, dry: 50, wet: 100, odd90: 0)),
+    ("Wavy Pong", .init(rate: 5.1, delay: 8.3, depth: 100, dry: 50, wet: 100, odd90: 1)),
     ("Shimmer", .init(rate: 10.0, delay: 1.75, depth: 1.4, dry: 50, wet: 100, odd90: 1)),
+    ("Disturbed", .init(rate: 5.0, delay: 50.0, depth: 100.0, dry: 50, wet: 100, odd90: 1)),
   ]
 
   /// Array of `AUAudioUnitPreset` for the factory presets.

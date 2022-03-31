@@ -1,23 +1,15 @@
 #import "C++/Kernel.hpp"
 
-// This must be done in a source file -- include files cannot see the Swift bridging file.
+// This must be done in a source file -- include files cannot see the Swift bridging file which contains the definition
+// of ParameterAddress.
 
 @import ParameterAddress;
 
-void Kernel::setParameterValue(AUParameterAddress address, AUValue value) noexcept {
-  os_log_with_type(log_, OS_LOG_TYPE_DEBUG, "setParameterValue - %llul %f", address, value);
-  switch (address) {
-    case ParameterAddressRate: setRate(value, 0); break;
-    case ParameterAddressDepth: depth_.set(value, 0); break;
-    case ParameterAddressDelay: delay_.set(value, 0); break;
-    case ParameterAddressDry: dryMix_.set(value, 0); break;
-    case ParameterAddressWet: wetMix_.set(value, 0); break;
-    case ParameterAddressOdd90: odd90_.set(value); break;
-  }
-}
-
-void Kernel::setRampedParameterValue(AUParameterAddress address, AUValue value, AUAudioFrameCount duration) noexcept {
+void Kernel::setParameterValue(AUParameterAddress address, AUValue value, AUAudioFrameCount duration) noexcept {
   os_log_with_type(log_, OS_LOG_TYPE_DEBUG, "setRampedParameterValue - %llul %f %d", address, value, duration);
+  assert(duration >= 0);
+
+  if (duration > rampRemaining_) rampRemaining_ = duration;
   switch (address) {
     case ParameterAddressRate: setRate(value, duration); break;
     case ParameterAddressDepth: depth_.set(value, duration); break;

@@ -37,7 +37,7 @@
 
 - (void)setBypass:(BOOL)state { kernel_->setBypass(state); }
 
-- (void)set:(AUParameter *)parameter value:(AUValue)value { kernel_->setParameterValue(parameter.address, value); }
+- (void)set:(AUParameter *)parameter value:(AUValue)value { kernel_->setParameterValue(parameter.address, value, 0.0); }
 
 - (AUValue)get:(AUParameter *)parameter { return kernel_->getParameterValue(parameter.address); }
 
