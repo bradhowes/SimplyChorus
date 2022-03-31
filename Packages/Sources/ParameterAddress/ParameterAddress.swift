@@ -3,15 +3,15 @@ import AUv3Support
 
 /**
  These are the unique addresses for the runtime parameters used by the audio unit.
+ NOTE: the raw values of this enum are used to index into an array of AUParameter values, so be sure to start at 0 and
+ have no gaps.
  */
 @objc public enum ParameterAddress: UInt64, CaseIterable {
-  case depth = 0
-  case rate
+  case rate = 0
+  case depth
   case delay
-  case feedback
   case dry
   case wet
-  case negativeFeedback
   case odd90
 };
 
@@ -21,17 +21,13 @@ public extension ParameterAddress {
   var parameterDefinition: ParameterDefinition {
     let maxDelay: AUValue = 50.0
     switch self {
-    case .depth: return .defFloat("depth", localized: "Depth", address: ParameterAddress.depth,
-                                  range: 0.0...maxDelay, unit: .milliseconds, logScale: true)
     case .rate: return .defFloat("rate", localized: "Rate", address: ParameterAddress.rate,
-                                 range: 0.01...20.0, unit: .hertz, logScale: true)
+                                 range: 0.01...20.0, unit: .hertz)
     case .delay: return .defFloat("delay", localized: "Delay", address: ParameterAddress.delay,
-                                  range: 0.0...maxDelay, unit: .milliseconds, logScale: true)
-    case .feedback: return .defPercent("feedback", localized: "Feedback", address: ParameterAddress.feedback)
+                                  range: 0.0...maxDelay, unit: .milliseconds)
+    case .depth: return .defPercent("depth", localized: "Depth", address: ParameterAddress.depth)
     case .dry: return .defPercent("dry", localized: "Dry", address: ParameterAddress.dry)
     case .wet: return .defPercent("wet", localized: "Wet", address: ParameterAddress.wet)
-    case .negativeFeedback: return .defBool("-feedback", localized: "-Feedback",
-                                            address: ParameterAddress.negativeFeedback)
     case .odd90: return .defBool("odd90", localized: "Odd 90°", address: ParameterAddress.odd90)
     }
   }

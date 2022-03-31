@@ -35,9 +35,6 @@ extension Knob: AUParameterValueProvider, RangedControl {}
   @IBOutlet private weak var rateControl: Knob!
   @IBOutlet private weak var rateValueLabel: FocusAwareTextField!
 
-  @IBOutlet private weak var feedbackControl: Knob!
-  @IBOutlet private weak var feedbackValueLabel: FocusAwareTextField!
-
   @IBOutlet private weak var wetMixControl: Knob!
   @IBOutlet private weak var wetMixValueLabel: FocusAwareTextField!
 
@@ -45,20 +42,17 @@ extension Knob: AUParameterValueProvider, RangedControl {}
   @IBOutlet private weak var dryMixValueLabel: FocusAwareTextField!
 
   @IBOutlet private weak var odd90Control: NSSwitch!
-  @IBOutlet private weak var negativeFeedbackControl: NSSwitch!
 
   private lazy var controls: [ParameterAddress: (Knob, FocusAwareTextField)] = [
-    .depth: (depthControl, depthValueLabel),
     .rate: (rateControl, rateValueLabel),
     .delay: (delayControl, delayValueLabel),
-    .feedback: (feedbackControl, feedbackValueLabel),
+    .depth: (depthControl, depthValueLabel),
     .wet: (wetMixControl, wetMixValueLabel),
     .dry: (dryMixControl, dryMixValueLabel)
   ]
 
   private lazy var switches: [ParameterAddress: NSSwitch] = [
     .odd90: odd90Control,
-    .negativeFeedback: negativeFeedbackControl
   ]
 
   private var editors = [ParameterAddress : AUParameterEditor]()
@@ -154,10 +148,6 @@ private extension ViewController {
 
   @IBAction func handleOdd90Changed(_ control: NSSwitch) {
     handleControlChanged(control, address: .odd90)
-  }
-
-  @IBAction func handleNegativeFeedbackChanged(_ control: NSSwitch) {
-    handleControlChanged(control, address: .negativeFeedback)
   }
 
   func handleControlChanged(_ control: AUParameterValueProvider, address: ParameterAddress) {

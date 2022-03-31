@@ -25,29 +25,17 @@ extension Knob: AUParameterValueProvider, RangedControl {}
   @IBOutlet weak var titleLabel: UILabel!
   @IBOutlet weak var controlsView: View!
 
-  @IBOutlet weak var depthControl: Knob!
-  @IBOutlet weak var depthValueLabel: Label!
-  @IBOutlet weak var depthTapEdit: UIView!
+  @IBOutlet weak var rateControl: Knob!
+  @IBOutlet weak var rateValueLabel: Label!
+  @IBOutlet weak var rateTapEdit: UIView!
 
   @IBOutlet weak var delayControl: Knob!
   @IBOutlet weak var delayValueLabel: Label!
   @IBOutlet weak var delayTapEdit: UIView!
 
-  @IBOutlet weak var rateControl: Knob!
-  @IBOutlet weak var rateValueLabel: Label!
-  @IBOutlet weak var rateTapEdit: UIView!
-
-  @IBOutlet weak var feedbackControl: Knob!
-  @IBOutlet weak var feedbackValueLabel: Label!
-  @IBOutlet weak var feedbackTapEdit: UIView!
-
-  @IBOutlet weak var altDepthControl: Knob!
-  @IBOutlet weak var altDepthValueLabel: Label!
-  @IBOutlet weak var altDepthTapEdit: View!
-
-  @IBOutlet weak var altDelayControl: Knob!
-  @IBOutlet weak var altDelayValueLabel: Label!
-  @IBOutlet weak var altDelayTapEdit: View!
+  @IBOutlet weak var depthControl: Knob!
+  @IBOutlet weak var depthValueLabel: Label!
+  @IBOutlet weak var depthTapEdit: UIView!
 
   @IBOutlet weak var dryMixControl: Knob!
   @IBOutlet weak var dryMixValueLabel: Label!
@@ -58,22 +46,17 @@ extension Knob: AUParameterValueProvider, RangedControl {}
   @IBOutlet weak var wetMixTapEdit: UIView!
 
   @IBOutlet weak var odd90Control: Switch!
-  @IBOutlet weak var negativeFeedbackControl: Switch!
 
   private lazy var controls: [ParameterAddress: [(Knob, Label, UIView)]] = [
-    .depth: [(depthControl, depthValueLabel, depthTapEdit),
-             (altDepthControl, altDepthValueLabel, altDepthTapEdit)],
-    .delay: [(delayControl, delayValueLabel, delayTapEdit),
-             (altDelayControl, altDelayValueLabel, altDelayTapEdit)],
     .rate: [(rateControl, rateValueLabel, rateTapEdit)],
-    .feedback: [(feedbackControl, feedbackValueLabel, feedbackTapEdit)],
+    .delay: [(delayControl, delayValueLabel, delayTapEdit)],
+    .depth: [(depthControl, depthValueLabel, depthTapEdit)],
     .wet: [(wetMixControl, wetMixValueLabel, wetMixTapEdit)],
     .dry: [(dryMixControl, dryMixValueLabel, dryMixTapEdit)]
   ]
 
   private lazy var switches: [ParameterAddress: Switch] = [
     .odd90: odd90Control,
-    .negativeFeedback: negativeFeedbackControl
   ]
 
   // Holds all of the other editing views and is used to end editing when tapped.
@@ -188,10 +171,6 @@ extension ViewController {
 
   @IBAction public func handleOdd90Change(_ control: Switch) {
     handleControlChanged(control, address: .odd90)
-  }
-
-  @IBAction public func handleNegativeFeedbackChange(_ control: Switch) {
-    handleControlChanged(control, address: .negativeFeedback)
   }
 
   private func handleControlChanged(_ control: AUParameterValueProvider, address: ParameterAddress) {
