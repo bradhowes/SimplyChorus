@@ -13,6 +13,8 @@ to load the AUv3 component the same was as a host such as GarageBand would. It u
 demonstrate how the component works  by playing a sample audio file and routing it through the effect and out to
 the device's speaker.
 
+![](Media/SimplyChorus.png)
+
 Additional features and info:
 
 * Uses a C++ kernel to generate audio samples in the render thread
