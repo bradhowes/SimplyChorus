@@ -29,8 +29,8 @@ class Snapshots: XCTestCase {
     XCTAssert(mainView.waitForExistence(timeout: 5))
   }
 
-  func testLPFPortrait() { run(.portrait, "LPF") { showMainView() } }
-  func testLPFLandscape() { run(.landscapeLeft, "LPF") { showMainView() } }
+  func testPortrait() { run(.portrait, "LPF") { showMainView() } }
+  func testLandscape() { run(.landscapeLeft, "LPF") { showMainView() } }
 }
 
 extension XCUIApplication {
