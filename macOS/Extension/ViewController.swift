@@ -22,7 +22,6 @@ extension Knob: AUParameterValueProvider, RangedControl {}
   private let parameters = AudioUnitParameters()
   private var viewConfig: AUAudioUnitViewConfiguration!
   private var keyValueObserverToken: NSKeyValueObservation?
-  private var hasActiveLabel = false
 
   @IBOutlet private weak var controlsView: NSView!
 
@@ -55,7 +54,9 @@ extension Knob: AUParameterValueProvider, RangedControl {}
     .odd90: odd90Control,
   ]
 
-  private var editors = [ParameterAddress : AUParameterEditor]()
+  private var editors = [AUParameterEditor]()
+  private var editorMap = [ParameterAddress : AUParameterEditor]()
+
   public var audioUnit: FilterAudioUnit? {
     didSet {
       DispatchQueue.main.async {
@@ -77,6 +78,7 @@ public extension ViewController {
     if audioUnit != nil {
       createEditors()
     }
+
     os_log(.info, log: log, "viewDidLoad END")
   }
 
@@ -96,8 +98,7 @@ extension ViewController: AUAudioUnitFactory {
   @objc public func createAudioUnit(with componentDescription: AudioComponentDescription) throws -> AUAudioUnit {
     let kernel = KernelBridge(Bundle.main.auBaseName, maxDelayMilliseconds: parameters[.delay].maxValue)
     let audioUnit = try FilterAudioUnitFactory.create(componentDescription: componentDescription,
-                                                      parameters: parameters,
-                                                      kernel: kernel,
+                                                      parameters: parameters, kernel: kernel,
                                                       viewConfigurationManager: self)
     self.audioUnit = audioUnit
     return audioUnit
@@ -127,16 +128,22 @@ private extension ViewController {
       knob.target = self
       knob.action = #selector(handleKnobValueChanged(_:))
 
-      editors[parameterAddress] = FloatParameterEditor(parameter: parameters[parameterAddress],
-                                                       formatter: parameters.valueFormatter(parameterAddress),
-                                                       rangedControl: knob, label: label)
+      let editor = FloatParameterEditor(parameter: parameters[parameterAddress],
+                                        formatter: parameters.valueFormatter(parameterAddress),
+                                        rangedControl: knob, label: label)
+      editors.append(editor)
+      editorMap[parameterAddress] = editor
     }
 
     for (parameterAddress, control) in switches {
       control.setTint(knobColor)
-      editors[parameterAddress] = BooleanParameterEditor(parameter: parameters[parameterAddress],
-                                                         booleanControl: control)
+      let editor = BooleanParameterEditor(parameter: parameters[parameterAddress],
+                                          booleanControl: control)
+      editors.append(editor)
+      editorMap[parameterAddress] = editor
     }
+
+    keyValueObserverToken = useAudioUnit(audioUnit!, editors: editors)
 
     os_log(.info, log: log, "createEditors END")
   }
@@ -164,6 +171,6 @@ private extension ViewController {
       audioUnit.currentPreset = nil
     }
 
-    editors[address]?.controlChanged(source: control)
+    editorMap[address]?.controlChanged(source: control)
   }
 }
