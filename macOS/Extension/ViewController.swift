@@ -143,7 +143,7 @@ private extension ViewController {
       editorMap[parameterAddress] = editor
     }
 
-    keyValueObserverToken = useAudioUnit(audioUnit!, editors: editors)
+    keyValueObserverToken = Self.updateEditorsOnPresetChange(audioUnit!, editors: editors)
 
     os_log(.info, log: log, "createEditors END")
   }
