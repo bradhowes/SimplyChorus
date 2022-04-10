@@ -18,7 +18,7 @@
 #import "DSPHeaders/PercentageParameter.hpp"
 
 /**
- The audio processing kernel that generates a "flange" effect by combining an audio signal with a slightly delayed copy
+ The audio processing kernel that generates a "chorus" effect by combining an audio signal with a slightly delayed copy
  of itself. The delay value oscillates at a defined frequency which causes the delayed audio to vary in pitch due to it
  being sped up or slowed down.
  */
@@ -37,6 +37,7 @@ public:
   /**
    Update kernel and buffers to support the given format and channel count
 
+   @param busCount the number of busses to support
    @param format the audio format to render
    @param maxFramesToRender the maximum number of samples we will be asked to render in one go
    @param maxDelayMilliseconds the max number of milliseconds of audio samples to keep in delay buffer
@@ -173,33 +174,10 @@ private:
 
   void doMIDIEvent(const AUMIDIEvent& midiEvent) noexcept {}
 
+  /// Sample is the sum of samples from various taps into the delay line divided by the number of taps.
   AUValue getDelayedSample(const DelayLine& delayLine, const DelayIndices& indices) const noexcept {
-    return std::accumulate(indices.begin(), indices.end(), 0.0,
-                           [&](AUValue left, AUValue right) { return left + delayLine.read(right); }) / TapCount;
-  }
-
-  void updateCPUUsage() noexcept {
-    thread_array_t threads;
-    mach_msg_type_number_t threadCount;
-    if (task_threads(mach_task_self(), &threads, &threadCount) != KERN_SUCCESS) {
-      return;
-    }
-
-    double usage = 0;
-    for (int i = 0; i < threadCount; i++) {
-      thread_info_data_t     threadInfo;
-      mach_msg_type_number_t threadInfoCount = THREAD_INFO_MAX;
-      if (thread_info(threads[i], THREAD_BASIC_INFO, (thread_info_t) threadInfo, &threadInfoCount) != KERN_SUCCESS) {
-        usage = -1;
-        break;
-      }
-      auto info = (thread_basic_info_t) threadInfo;
-      if ((info->flags & TH_FLAGS_IDLE) == 0) {
-        usage += double(info->cpu_usage) / TH_USAGE_SCALE;
-      }
-    }
-    vm_deallocate(mach_task_self(), (vm_offset_t) threads, threadCount * sizeof(thread_t));
-    cpuUsage_ = usage;
+    return std::accumulate(indices.begin(), indices.end(), 0.0, [&](AUValue left, AUValue right) {
+      return left + delayLine.read(right); }) / TapCount;
   }
 
   DSPHeaders::Parameters::RampingParameter<AUValue> rate_;
@@ -216,6 +194,4 @@ private:
   DelayIndices evenDelays_;
   DelayIndices oddDelays_;
   AUAudioFrameCount rampRemaining_;
-
-  double cpuUsage_{};
 };
