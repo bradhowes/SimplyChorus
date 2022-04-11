@@ -3,7 +3,6 @@
 import AUv3Support
 import AUv3Support_iOS
 import CoreAudioKit
-import Theme
 import UIKit
 
 final class MainViewController: UIViewController {
@@ -21,7 +20,7 @@ final class MainViewController: UIViewController {
                                               componentManufacturer: bundle.auComponentManufacturer,
                                               componentFlags: 0, componentFlagsMask: 0)
 
-    let tintColor = Theme.color(.label)
+    let tintColor = UIColor(named:"label")!
     let config = HostViewConfig(name: bundle.auBaseName, version: bundle.releaseVersionNumber, appDelegate: delegate,
                                 appStoreId: bundle.appStoreId, componentDescription: component, sampleLoop: .sample1,
                                 tintColor: tintColor) { url in
