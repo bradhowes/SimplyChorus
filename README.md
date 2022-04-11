@@ -3,6 +3,8 @@
 [![AUv3](https://img.shields.io/badge/AudioUnit-AUv3-orange.svg)](https://developer.apple.com/documentation/audiounit)
 [![License: MIT](https://img.shields.io/badge/License-MIT-A31F34.svg)](https://opensource.org/licenses/MIT)
 
+![](Media/SimplyChorus.png)
+
 # About SimplyChorus
 
 This is an AUv3 audio component for both iOS and macOS platforms that generates the classic chorusing effect. The
@@ -10,8 +12,6 @@ app for each platform embeds in the app bundle an app extension containing the A
 to load the AUv3 component the same was as a host such as GarageBand would. It uses the app extension to
 demonstrate how the component works  by playing a sample audio file and routing it through the effect and out to
 the device's speaker.
-
-![](Media/SimplyChorus.png)
 
 Additional features and info:
 
