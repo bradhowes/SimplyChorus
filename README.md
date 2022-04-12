@@ -64,20 +64,7 @@ Each OS ([macOS](macOS) and [iOS](iOS)) have the same code layout:
 Note that the signal processing code is to be found in the
 [ChorusKernel](https://github.com/bradhowes/ChorusKernel) Swift package; the targets in this repo contain the
 user interface for the signal processing kernel and audio unit runtime parameters. The "knobs" of the interface
-are provided by [another Swift package](https://github.com/bradhowes/Knob).
-
-All of the common code shared between the iOS and macOS apps and app extensions resides in the [Packages](Packages)
-folder as Swift packages. Originally, this common code was built as a shared framework, but now Swift packages is
-powerful enough to do the same. There are at present 4 separate libraries that are built in package form:
-
-* [Kernel](Packages/Sources/Kernel) -- the C++ and Obj-C++ code that renders audio samples
-* [KernelBridge](Packages/Sources/KernelBridge) -- a bridge to the Obj-C++ kernel for Swift code
-* [ParameterAddress](Packages/Sources/ParameterAddress) -- definitions of the runtime parameters that control the
-operation of the kernel
-* [Parameters](Packages/Sources/Parameters) -- collection of AUParameter entities based on the definitions from
-the `ParameterAddress` library. Also provides factory presets for the audio unit.
-
-There are additional details in the individual folders as well.
+are provided by [another Swift package](https://github.com/bradhowes/knob).
 
 # Dependencies
 
@@ -85,4 +72,7 @@ This code now depends on two Swift packages:
 
 - [AUv3Support](https://github.com/bradhowes/AUv3Support) -- common AUv3 component and host code. Much of the code that
 was originally in a shared framework in this repo is now in this separate package.
-- [Knob](https://github.com/bradhowes/knob) -- a simple library for macOS and iOS that generates rotary "knob" controls
+- [Knob](https://github.com/bradhowes/knob) -- a simple library for macOS and iOS that generates rotary "knob"
+controls using Core Animation layers.
+- [ChorusKernel](https://github.com/bradhowes/ChorusKernel) -- the signal processing kernel and runtime
+parameters for the chorus effect.
