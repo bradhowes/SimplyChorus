@@ -13,6 +13,8 @@ to load the AUv3 component the same was as a host such as GarageBand would. It u
 demonstrate how the component works  by playing a sample audio file and routing it through the effect and out to
 the device's speaker.
 
+![](Media/macOS.png)
+
 Additional features and info:
 
 * Uses a C++ kernel to generate audio samples in the render thread
@@ -51,7 +53,7 @@ operating system will also install and register any app extensions found in the 
 The apps attempt to instantiate the AUv3 component and wire it up to an audio file player and the output
 speaker. When it runs, you can play the sample file and manipulate the effects settings in the components UI.
 
-# Code Layout
+# Code
 
 Each OS ([macOS](macOS) and [iOS](iOS)) have the same code layout:
 
@@ -59,9 +61,14 @@ Each OS ([macOS](macOS) and [iOS](iOS)) have the same code layout:
 * `Extension` -- code and configury for the extension itself. It contains the OS-specific UI layout
   definitions.
 
+Note that the signal processing code is to be found in the
+[ChorusKernel](https://github.com/bradhowes/ChorusKernel) Swift package; the targets in this repo contain the
+user interface for the signal processing kernel and audio unit runtime parameters. The "knobs" of the interface
+are provided by [another Swift package](https://github.com/bradhowes/Knob).
+
 All of the common code shared between the iOS and macOS apps and app extensions resides in the [Packages](Packages)
 folder as Swift packages. Originally, this common code was built as a shared framework, but now Swift packages is
-powerful enough to do the same. There are at present 5 separate libraries that are built in package form:
+powerful enough to do the same. There are at present 4 separate libraries that are built in package form:
 
 * [Kernel](Packages/Sources/Kernel) -- the C++ and Obj-C++ code that renders audio samples
 * [KernelBridge](Packages/Sources/KernelBridge) -- a bridge to the Obj-C++ kernel for Swift code
