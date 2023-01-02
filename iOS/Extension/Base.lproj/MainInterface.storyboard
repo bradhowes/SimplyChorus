@@ -56,9 +56,6 @@
                                                                     <constraint firstAttribute="height" constant="120" id="kc7-LR-0xH"/>
                                                                     <constraint firstAttribute="width" constant="120" id="rGa-hf-xLW"/>
                                                                 </constraints>
-                                                                <connections>
-                                                                    <action selector="handleKnobValueChange:" destination="BYZ-38-t0r" eventType="valueChanged" id="d07-DS-HAv"/>
-                                                                </connections>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="50%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GCP-HR-UOg" userLabel="Value">
                                                                 <rect key="frame" x="39.5" y="112" width="41.5" height="24"/>
@@ -100,9 +97,6 @@
                                                                     <constraint firstAttribute="width" constant="120" id="H2k-Zc-fQL"/>
                                                                     <constraint firstAttribute="height" constant="120" id="JjA-QY-YuT"/>
                                                                 </constraints>
-                                                                <connections>
-                                                                    <action selector="handleKnobValueChange:" destination="BYZ-38-t0r" eventType="valueChanged" id="aP4-TT-Nou"/>
-                                                                </connections>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="50%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dLv-08-l4f" userLabel="Value">
                                                                 <rect key="frame" x="39" y="112" width="42" height="24"/>
@@ -139,9 +133,6 @@
                                                                     <constraint firstAttribute="height" constant="120" id="AdS-9p-kzj"/>
                                                                     <constraint firstAttribute="width" constant="120" id="TeA-wv-sLl"/>
                                                                 </constraints>
-                                                                <connections>
-                                                                    <action selector="handleKnobValueChange:" destination="BYZ-38-t0r" eventType="valueChanged" id="zhQ-bs-Eqa"/>
-                                                                </connections>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="50%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="18G-xW-Z6K" userLabel="Value">
                                                                 <rect key="frame" x="39.5" y="112" width="41.5" height="24"/>
@@ -177,9 +168,6 @@
                                                                     <constraint firstAttribute="height" constant="120" id="1Og-12-ge6"/>
                                                                     <constraint firstAttribute="width" constant="120" id="cgl-sa-Uf7"/>
                                                                 </constraints>
-                                                                <connections>
-                                                                    <action selector="handleKnobValueChange:" destination="BYZ-38-t0r" eventType="valueChanged" id="2nv-Af-U8L"/>
-                                                                </connections>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="50%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0vW-Zo-qaf" userLabel="Value">
                                                                 <rect key="frame" x="39.5" y="112" width="41.5" height="30"/>
@@ -223,9 +211,6 @@
                                                                             <constraint firstAttribute="height" constant="80" id="6oC-7g-8AI"/>
                                                                             <constraint firstAttribute="width" constant="80" id="hnM-Xb-fyQ"/>
                                                                         </constraints>
-                                                                        <connections>
-                                                                            <action selector="handleKnobValueChange:" destination="BYZ-38-t0r" eventType="valueChanged" id="Qo3-1m-Jfj"/>
-                                                                        </connections>
                                                                     </view>
                                                                     <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="50%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N2N-20-gAu" userLabel="Value">
                                                                         <rect key="frame" x="22" y="72" width="36" height="21"/>
@@ -258,9 +243,6 @@
                                                                         <rect key="frame" x="37" y="0.0" width="51" height="31"/>
                                                                         <color key="onTintColor" name="knob"/>
                                                                         <color key="thumbTintColor" name="label"/>
-                                                                        <connections>
-                                                                            <action selector="handleOdd90Change:" destination="BYZ-38-t0r" eventType="valueChanged" id="wqG-sI-UXP"/>
-                                                                        </connections>
                                                                     </switch>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Odd 90°" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Pj-Eh-BZS">
                                                                         <rect key="frame" x="35.5" y="35" width="52" height="16"/>
@@ -280,9 +262,6 @@
                                                                             <constraint firstAttribute="width" constant="80" id="Ogz-zI-bPr"/>
                                                                             <constraint firstAttribute="height" constant="80" id="hUd-gk-rXl"/>
                                                                         </constraints>
-                                                                        <connections>
-                                                                            <action selector="handleKnobValueChange:" destination="BYZ-38-t0r" eventType="valueChanged" id="B7b-iZ-Wdb"/>
-                                                                        </connections>
                                                                     </view>
                                                                     <label opaque="NO" userInteractionEnabled="NO" tag="5" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="50%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OFy-GK-jEJ" userLabel="Value">
                                                                         <rect key="frame" x="22" y="72" width="36" height="21"/>

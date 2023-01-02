@@ -9,24 +9,22 @@
 /* Begin PBXBuildFile section */
 		BD1D257925D5AAB000523748 /* Snapshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1D257825D5AAB000523748 /* Snapshots.swift */; };
 		BD1D258825D5AAE300523748 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1D258725D5AAE300523748 /* SnapshotHelper.swift */; };
-		BD55DF6A280475960013F40E /* Kernel in Frameworks */ = {isa = PBXBuildFile; productRef = BD55DF69280475960013F40E /* Kernel */; };
-		BD55DF6C280475960013F40E /* KernelBridge in Frameworks */ = {isa = PBXBuildFile; productRef = BD55DF6B280475960013F40E /* KernelBridge */; };
-		BD55DF6E280475960013F40E /* ParameterAddress in Frameworks */ = {isa = PBXBuildFile; productRef = BD55DF6D280475960013F40E /* ParameterAddress */; };
-		BD55DF70280475960013F40E /* Parameters in Frameworks */ = {isa = PBXBuildFile; productRef = BD55DF6F280475960013F40E /* Parameters */; };
-		BD55DF72280475A10013F40E /* Kernel in Frameworks */ = {isa = PBXBuildFile; productRef = BD55DF71280475A10013F40E /* Kernel */; };
-		BD55DF74280475A10013F40E /* KernelBridge in Frameworks */ = {isa = PBXBuildFile; productRef = BD55DF73280475A10013F40E /* KernelBridge */; };
-		BD55DF76280475A10013F40E /* ParameterAddress in Frameworks */ = {isa = PBXBuildFile; productRef = BD55DF75280475A10013F40E /* ParameterAddress */; };
-		BD55DF78280475A10013F40E /* Parameters in Frameworks */ = {isa = PBXBuildFile; productRef = BD55DF77280475A10013F40E /* Parameters */; };
+		BD6214B0295BEABD0089FF15 /* AUv3-Support-iOS in Frameworks */ = {isa = PBXBuildFile; productRef = BD6214AF295BEABD0089FF15 /* AUv3-Support-iOS */; };
+		BD6214B2295BEAC50089FF15 /* AUv3-Support-macOS in Frameworks */ = {isa = PBXBuildFile; productRef = BD6214B1295BEAC50089FF15 /* AUv3-Support-macOS */; };
+		BD6214B9295CF9130089FF15 /* AUv3-Support in Frameworks */ = {isa = PBXBuildFile; productRef = BD6214B8295CF9130089FF15 /* AUv3-Support */; };
+		BD6214BB295CF9130089FF15 /* Kernel in Frameworks */ = {isa = PBXBuildFile; productRef = BD6214BA295CF9130089FF15 /* Kernel */; };
+		BD6214BD295CF9130089FF15 /* KernelBridge in Frameworks */ = {isa = PBXBuildFile; productRef = BD6214BC295CF9130089FF15 /* KernelBridge */; };
+		BD6214BF295CF9130089FF15 /* ParameterAddress in Frameworks */ = {isa = PBXBuildFile; productRef = BD6214BE295CF9130089FF15 /* ParameterAddress */; };
+		BD6214C1295CF9130089FF15 /* Parameters in Frameworks */ = {isa = PBXBuildFile; productRef = BD6214C0295CF9130089FF15 /* Parameters */; };
+		BD6214C3295CFE220089FF15 /* AUv3-DSP-Headers in Frameworks */ = {isa = PBXBuildFile; productRef = BD6214C2295CFE220089FF15 /* AUv3-DSP-Headers */; };
+		BD6214C5295CFE450089FF15 /* Kernel in Frameworks */ = {isa = PBXBuildFile; productRef = BD6214C4295CFE450089FF15 /* Kernel */; };
+		BD6214C7295CFE450089FF15 /* KernelBridge in Frameworks */ = {isa = PBXBuildFile; productRef = BD6214C6295CFE450089FF15 /* KernelBridge */; };
+		BD6214C9295CFE450089FF15 /* ParameterAddress in Frameworks */ = {isa = PBXBuildFile; productRef = BD6214C8295CFE450089FF15 /* ParameterAddress */; };
+		BD6214CB295CFE450089FF15 /* Parameters in Frameworks */ = {isa = PBXBuildFile; productRef = BD6214CA295CFE450089FF15 /* Parameters */; };
+		BD6214CD295CFE500089FF15 /* AUv3-DSP-Headers in Frameworks */ = {isa = PBXBuildFile; productRef = BD6214CC295CFE500089FF15 /* AUv3-DSP-Headers */; };
+		BD6214CF295CFE500089FF15 /* AUv3-Support in Frameworks */ = {isa = PBXBuildFile; productRef = BD6214CE295CFE500089FF15 /* AUv3-Support */; };
 		BD63B15424AE25F80015236D /* LICENSE.md in Resources */ = {isa = PBXBuildFile; fileRef = BD49661924A3605800A81F0B /* LICENSE.md */; };
 		BD63B15624AE26020015236D /* LICENSE.md in Resources */ = {isa = PBXBuildFile; fileRef = BD49661924A3605800A81F0B /* LICENSE.md */; };
-		BD66F681293AC389006AD0D4 /* AUv3-DSP-Headers in Frameworks */ = {isa = PBXBuildFile; productRef = BD66F680293AC389006AD0D4 /* AUv3-DSP-Headers */; };
-		BD66F683293AC389006AD0D4 /* AUv3-Support in Frameworks */ = {isa = PBXBuildFile; productRef = BD66F682293AC389006AD0D4 /* AUv3-Support */; };
-		BD66F685293AC389006AD0D4 /* AUv3-Support-iOS in Frameworks */ = {isa = PBXBuildFile; productRef = BD66F684293AC389006AD0D4 /* AUv3-Support-iOS */; };
-		BD66F687293AC39B006AD0D4 /* AUv3-Support-iOS in Frameworks */ = {isa = PBXBuildFile; productRef = BD66F686293AC39B006AD0D4 /* AUv3-Support-iOS */; };
-		BD66F689293AC3A9006AD0D4 /* AUv3-DSP-Headers in Frameworks */ = {isa = PBXBuildFile; productRef = BD66F688293AC3A9006AD0D4 /* AUv3-DSP-Headers */; };
-		BD66F68B293AC3A9006AD0D4 /* AUv3-Support in Frameworks */ = {isa = PBXBuildFile; productRef = BD66F68A293AC3A9006AD0D4 /* AUv3-Support */; };
-		BD66F68D293AC3A9006AD0D4 /* AUv3-Support-macOS in Frameworks */ = {isa = PBXBuildFile; productRef = BD66F68C293AC3A9006AD0D4 /* AUv3-Support-macOS */; };
-		BD66F68F293AC3B4006AD0D4 /* AUv3-Support-macOS in Frameworks */ = {isa = PBXBuildFile; productRef = BD66F68E293AC3B4006AD0D4 /* AUv3-Support-macOS */; };
 		BD75B6BA25DAA6680071F55E /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = BD75B6B925DAA6680071F55E /* Credits.rtf */; };
 		BD78FDC224C2F6530091A854 /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD78FDC124C2F6530091A854 /* MainWindowController.swift */; };
 		BD8D4E1527B589D4007011A5 /* Knob-iOS in Frameworks */ = {isa = PBXBuildFile; productRef = BD8D4E1427B589D4007011A5 /* Knob-iOS */; };
@@ -131,6 +129,8 @@
 		BD1D257A25D5AAB000523748 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BD1D258725D5AAE300523748 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = fastlane/SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
 		BD49661924A3605800A81F0B /* LICENSE.md */ = {isa = PBXFileReference; explicitFileType = text; fileEncoding = 4; path = LICENSE.md; sourceTree = "<group>"; };
+		BD6214AD295BB9080089FF15 /* AUv3Support */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = AUv3Support; path = ../AUv3Support; sourceTree = "<group>"; };
+		BD6214B7295CF8AF0089FF15 /* ChorusKernel */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = ChorusKernel; path = ../ChorusKernel; sourceTree = "<group>"; };
 		BD75B6B925DAA6680071F55E /* Credits.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
 		BD78FDC124C2F6530091A854 /* MainWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
 		BD8D4E2527B58E24007011A5 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
@@ -185,7 +185,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BDB7CE9E249FC152009580D5 /* Accelerate.framework in Frameworks */,
-				BD66F687293AC39B006AD0D4 /* AUv3-Support-iOS in Frameworks */,
+				BD6214B0295BEABD0089FF15 /* AUv3-Support-iOS in Frameworks */,
 				C4737B0B2231D930002CAD0B /* AudioToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -194,15 +194,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BD55DF6E280475960013F40E /* ParameterAddress in Frameworks */,
-				BD55DF6A280475960013F40E /* Kernel in Frameworks */,
 				BD8D4E1527B589D4007011A5 /* Knob-iOS in Frameworks */,
+				BD6214C5295CFE450089FF15 /* Kernel in Frameworks */,
+				BD6214CB295CFE450089FF15 /* Parameters in Frameworks */,
+				BD6214C7295CFE450089FF15 /* KernelBridge in Frameworks */,
 				BDB7CE9F249FC157009580D5 /* Accelerate.framework in Frameworks */,
-				BD66F685293AC389006AD0D4 /* AUv3-Support-iOS in Frameworks */,
-				BD55DF6C280475960013F40E /* KernelBridge in Frameworks */,
-				BD66F683293AC389006AD0D4 /* AUv3-Support in Frameworks */,
-				BD66F681293AC389006AD0D4 /* AUv3-DSP-Headers in Frameworks */,
-				BD55DF70280475960013F40E /* Parameters in Frameworks */,
+				BD6214CF295CFE500089FF15 /* AUv3-Support in Frameworks */,
+				BD6214CD295CFE500089FF15 /* AUv3-DSP-Headers in Frameworks */,
+				BD6214C9295CFE450089FF15 /* ParameterAddress in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -210,7 +209,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BD66F68F293AC3B4006AD0D4 /* AUv3-Support-macOS in Frameworks */,
+				BD6214B2295BEAC50089FF15 /* AUv3-Support-macOS in Frameworks */,
 				BDB7CE93249EC556009580D5 /* Accelerate.framework in Frameworks */,
 				BDC48CF927B5BAE1005974D7 /* AudioToolbox.framework in Frameworks */,
 			);
@@ -220,15 +219,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BD55DF76280475A10013F40E /* ParameterAddress in Frameworks */,
-				BD55DF72280475A10013F40E /* Kernel in Frameworks */,
+				BD6214BD295CF9130089FF15 /* KernelBridge in Frameworks */,
+				BD6214C1295CF9130089FF15 /* Parameters in Frameworks */,
+				BD6214BF295CF9130089FF15 /* ParameterAddress in Frameworks */,
 				BD8D4E1727B589D4007011A5 /* Knob-macOS in Frameworks */,
-				BD55DF74280475A10013F40E /* KernelBridge in Frameworks */,
-				BD55DF78280475A10013F40E /* Parameters in Frameworks */,
-				BD66F68B293AC3A9006AD0D4 /* AUv3-Support in Frameworks */,
-				BD66F68D293AC3A9006AD0D4 /* AUv3-Support-macOS in Frameworks */,
-				BD66F689293AC3A9006AD0D4 /* AUv3-DSP-Headers in Frameworks */,
+				BD6214C3295CFE220089FF15 /* AUv3-DSP-Headers in Frameworks */,
+				BD6214B9295CF9130089FF15 /* AUv3-Support in Frameworks */,
 				BDB7CE94249EC565009580D5 /* Accelerate.framework in Frameworks */,
+				BD6214BB295CF9130089FF15 /* Kernel in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,6 +246,8 @@
 		BD66F677293ABC48006AD0D4 /* Packages */ = {
 			isa = PBXGroup;
 			children = (
+				BD6214AD295BB9080089FF15 /* AUv3Support */,
+				BD6214B7295CF8AF0089FF15 /* ChorusKernel */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
@@ -422,7 +422,7 @@
 			);
 			name = "iOS App";
 			packageProductDependencies = (
-				BD66F686293AC39B006AD0D4 /* AUv3-Support-iOS */,
+				BD6214AF295BEABD0089FF15 /* AUv3-Support-iOS */,
 			);
 			productName = "AUv3Filter iOS";
 			productReference = C437FE3A222367A6008D6C09 /* SimplyChorusHost.app */;
@@ -443,13 +443,12 @@
 			name = "iOS Extension";
 			packageProductDependencies = (
 				BD8D4E1427B589D4007011A5 /* Knob-iOS */,
-				BD55DF69280475960013F40E /* Kernel */,
-				BD55DF6B280475960013F40E /* KernelBridge */,
-				BD55DF6D280475960013F40E /* ParameterAddress */,
-				BD55DF6F280475960013F40E /* Parameters */,
-				BD66F680293AC389006AD0D4 /* AUv3-DSP-Headers */,
-				BD66F682293AC389006AD0D4 /* AUv3-Support */,
-				BD66F684293AC389006AD0D4 /* AUv3-Support-iOS */,
+				BD6214C4295CFE450089FF15 /* Kernel */,
+				BD6214C6295CFE450089FF15 /* KernelBridge */,
+				BD6214C8295CFE450089FF15 /* ParameterAddress */,
+				BD6214CA295CFE450089FF15 /* Parameters */,
+				BD6214CC295CFE500089FF15 /* AUv3-DSP-Headers */,
+				BD6214CE295CFE500089FF15 /* AUv3-Support */,
 			);
 			productName = "AUv3FilterExtension iOS";
 			productReference = C437FE632223686D008D6C09 /* SimplyChorusAU.appex */;
@@ -472,7 +471,7 @@
 			);
 			name = SimplyChorus;
 			packageProductDependencies = (
-				BD66F68E293AC3B4006AD0D4 /* AUv3-Support-macOS */,
+				BD6214B1295BEAC50089FF15 /* AUv3-Support-macOS */,
 			);
 			productName = "AUv3Filter macOS";
 			productReference = C437FE7A2223688D008D6C09 /* SimplyChorus.app */;
@@ -493,13 +492,12 @@
 			name = "macOS Extension";
 			packageProductDependencies = (
 				BD8D4E1627B589D4007011A5 /* Knob-macOS */,
-				BD55DF71280475A10013F40E /* Kernel */,
-				BD55DF73280475A10013F40E /* KernelBridge */,
-				BD55DF75280475A10013F40E /* ParameterAddress */,
-				BD55DF77280475A10013F40E /* Parameters */,
-				BD66F688293AC3A9006AD0D4 /* AUv3-DSP-Headers */,
-				BD66F68A293AC3A9006AD0D4 /* AUv3-Support */,
-				BD66F68C293AC3A9006AD0D4 /* AUv3-Support-macOS */,
+				BD6214B8295CF9130089FF15 /* AUv3-Support */,
+				BD6214BA295CF9130089FF15 /* Kernel */,
+				BD6214BC295CF9130089FF15 /* KernelBridge */,
+				BD6214BE295CF9130089FF15 /* ParameterAddress */,
+				BD6214C0295CF9130089FF15 /* Parameters */,
+				BD6214C2295CFE220089FF15 /* AUv3-DSP-Headers */,
 			);
 			productName = "AUv3FilterExtension macOS";
 			productReference = C437FEA0222368B7008D6C09 /* SimplyChorusAU.appex */;
@@ -564,8 +562,6 @@
 			mainGroup = C437FE2F2223672C008D6C09;
 			packageReferences = (
 				BD8D4E1327B589D4007011A5 /* XCRemoteSwiftPackageReference "knob" */,
-				BD55DF682804758A0013F40E /* XCRemoteSwiftPackageReference "ChorusKernel" */,
-				BD66F67F293AC32C006AD0D4 /* XCRemoteSwiftPackageReference "AUv3Support" */,
 			);
 			productRefGroup = C437FE3B222367A6008D6C09 /* Products */;
 			projectDirPath = "";
@@ -1567,22 +1563,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		BD55DF682804758A0013F40E /* XCRemoteSwiftPackageReference "ChorusKernel" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/bradhowes/ChorusKernel";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
-		BD66F67F293AC32C006AD0D4 /* XCRemoteSwiftPackageReference "AUv3Support" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/bradhowes/AUv3Support";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
 		BD8D4E1327B589D4007011A5 /* XCRemoteSwiftPackageReference "knob" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/bradhowes/knob";
@@ -1594,85 +1574,61 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		BD55DF69280475960013F40E /* Kernel */ = {
+		BD6214AF295BEABD0089FF15 /* AUv3-Support-iOS */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = BD55DF682804758A0013F40E /* XCRemoteSwiftPackageReference "ChorusKernel" */;
-			productName = Kernel;
-		};
-		BD55DF6B280475960013F40E /* KernelBridge */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = BD55DF682804758A0013F40E /* XCRemoteSwiftPackageReference "ChorusKernel" */;
-			productName = KernelBridge;
-		};
-		BD55DF6D280475960013F40E /* ParameterAddress */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = BD55DF682804758A0013F40E /* XCRemoteSwiftPackageReference "ChorusKernel" */;
-			productName = ParameterAddress;
-		};
-		BD55DF6F280475960013F40E /* Parameters */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = BD55DF682804758A0013F40E /* XCRemoteSwiftPackageReference "ChorusKernel" */;
-			productName = Parameters;
-		};
-		BD55DF71280475A10013F40E /* Kernel */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = BD55DF682804758A0013F40E /* XCRemoteSwiftPackageReference "ChorusKernel" */;
-			productName = Kernel;
-		};
-		BD55DF73280475A10013F40E /* KernelBridge */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = BD55DF682804758A0013F40E /* XCRemoteSwiftPackageReference "ChorusKernel" */;
-			productName = KernelBridge;
-		};
-		BD55DF75280475A10013F40E /* ParameterAddress */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = BD55DF682804758A0013F40E /* XCRemoteSwiftPackageReference "ChorusKernel" */;
-			productName = ParameterAddress;
-		};
-		BD55DF77280475A10013F40E /* Parameters */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = BD55DF682804758A0013F40E /* XCRemoteSwiftPackageReference "ChorusKernel" */;
-			productName = Parameters;
-		};
-		BD66F680293AC389006AD0D4 /* AUv3-DSP-Headers */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = BD66F67F293AC32C006AD0D4 /* XCRemoteSwiftPackageReference "AUv3Support" */;
-			productName = "AUv3-DSP-Headers";
-		};
-		BD66F682293AC389006AD0D4 /* AUv3-Support */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = BD66F67F293AC32C006AD0D4 /* XCRemoteSwiftPackageReference "AUv3Support" */;
-			productName = "AUv3-Support";
-		};
-		BD66F684293AC389006AD0D4 /* AUv3-Support-iOS */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = BD66F67F293AC32C006AD0D4 /* XCRemoteSwiftPackageReference "AUv3Support" */;
 			productName = "AUv3-Support-iOS";
 		};
-		BD66F686293AC39B006AD0D4 /* AUv3-Support-iOS */ = {
+		BD6214B1295BEAC50089FF15 /* AUv3-Support-macOS */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = BD66F67F293AC32C006AD0D4 /* XCRemoteSwiftPackageReference "AUv3Support" */;
-			productName = "AUv3-Support-iOS";
+			productName = "AUv3-Support-macOS";
 		};
-		BD66F688293AC3A9006AD0D4 /* AUv3-DSP-Headers */ = {
+		BD6214B8295CF9130089FF15 /* AUv3-Support */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = BD66F67F293AC32C006AD0D4 /* XCRemoteSwiftPackageReference "AUv3Support" */;
-			productName = "AUv3-DSP-Headers";
-		};
-		BD66F68A293AC3A9006AD0D4 /* AUv3-Support */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = BD66F67F293AC32C006AD0D4 /* XCRemoteSwiftPackageReference "AUv3Support" */;
 			productName = "AUv3-Support";
 		};
-		BD66F68C293AC3A9006AD0D4 /* AUv3-Support-macOS */ = {
+		BD6214BA295CF9130089FF15 /* Kernel */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = BD66F67F293AC32C006AD0D4 /* XCRemoteSwiftPackageReference "AUv3Support" */;
-			productName = "AUv3-Support-macOS";
+			productName = Kernel;
 		};
-		BD66F68E293AC3B4006AD0D4 /* AUv3-Support-macOS */ = {
+		BD6214BC295CF9130089FF15 /* KernelBridge */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = BD66F67F293AC32C006AD0D4 /* XCRemoteSwiftPackageReference "AUv3Support" */;
-			productName = "AUv3-Support-macOS";
+			productName = KernelBridge;
+		};
+		BD6214BE295CF9130089FF15 /* ParameterAddress */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ParameterAddress;
+		};
+		BD6214C0295CF9130089FF15 /* Parameters */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Parameters;
+		};
+		BD6214C2295CFE220089FF15 /* AUv3-DSP-Headers */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = "AUv3-DSP-Headers";
+		};
+		BD6214C4295CFE450089FF15 /* Kernel */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Kernel;
+		};
+		BD6214C6295CFE450089FF15 /* KernelBridge */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = KernelBridge;
+		};
+		BD6214C8295CFE450089FF15 /* ParameterAddress */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ParameterAddress;
+		};
+		BD6214CA295CFE450089FF15 /* Parameters */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Parameters;
+		};
+		BD6214CC295CFE500089FF15 /* AUv3-DSP-Headers */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = "AUv3-DSP-Headers";
+		};
+		BD6214CE295CFE500089FF15 /* AUv3-Support */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = "AUv3-Support";
 		};
 		BD8D4E1427B589D4007011A5 /* Knob-iOS */ = {
 			isa = XCSwiftPackageProductDependency;

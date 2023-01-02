@@ -197,9 +197,6 @@
                                             <subviews>
                                                 <switch horizontalHuggingPriority="750" verticalHuggingPriority="750" baseWritingDirection="leftToRight" alignment="left" translatesAutoresizingMaskIntoConstraints="NO" id="l5S-ZP-tBO">
                                                     <rect key="frame" x="11" y="21" width="42" height="25"/>
-                                                    <connections>
-                                                        <action selector="handleOdd90Changed:" target="-2" id="oLe-Sc-tqt"/>
-                                                    </connections>
                                                 </switch>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eOb-pQ-h5V">
                                                     <rect key="frame" x="-2" y="0.0" width="67" height="19"/>
