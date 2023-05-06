@@ -1545,8 +1545,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/bradhowes/knob";
 			requirement = {
-				kind = exactVersion;
-				version = 1.6.0;
+				branch = main;
+				kind = branch;
 			};
 		};
 		BDD083EE29628E060098859A /* XCRemoteSwiftPackageReference "ChorusKernel" */ = {
