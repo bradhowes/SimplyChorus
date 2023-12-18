@@ -1556,8 +1556,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/bradhowes/ChorusKernel";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 3.2.0;
+				kind = revision;
+				revision = b6ea31906096d24684755b8a994bd8d403dd0c35;
 			};
 		};
 		BDD083EF29628E200098859A /* XCRemoteSwiftPackageReference "AUv3Support" */ = {
