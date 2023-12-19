@@ -75,4 +75,5 @@ was originally in a shared framework in this repo is now in this separate packag
 - [Knob](https://github.com/bradhowes/knob) -- a simple library for macOS and iOS that generates rotary "knob"
 controls using Core Animation layers.
 - [ChorusKernel](https://github.com/bradhowes/ChorusKernel) -- the signal processing kernel and runtime
-parameters for the chorus effect.
+parameters for the chorus effect. The reason for the split is so that the DSP component can be repackaged in other apps such as
+my SoundFonts app. However, this separation might not remain. TBD.
