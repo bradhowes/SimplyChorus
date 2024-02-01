@@ -3,7 +3,7 @@
 import PackageDescription
 
 let package = Package(
-  name: "ChorusKernel",
+  name: "Packages",
   platforms: [.iOS(.v13), .macOS(.v11)],
   products: [
     .library(name: "KernelBridge", targets: ["KernelBridge"]),
@@ -22,8 +22,7 @@ let package = Package(
         "Kernel",
         .productItem(name: "AUv3-Support", package: "AUv3Support", condition: .none),
       ],
-      exclude: ["README.md"],
-      cxxSettings: [.unsafeFlags(["-fmodules", "-fcxx-modules"], .none)]
+      exclude: ["README.md"]
     ),
     .target(
       name: "Kernel",
@@ -53,6 +52,7 @@ let package = Package(
     .testTarget(
       name: "KernelTests",
       dependencies: ["Kernel", "ParameterAddress"],
+      cxxSettings: [.unsafeFlags(["-fmodules", "-fcxx-modules"], .none)],
       linkerSettings: [.linkedFramework("AVFoundation")]
     ),
     .testTarget(
