@@ -22,6 +22,8 @@ xcuserdata/
 
 .DerivedData-iOS/
 .DerivedData-macOS/
+coverage_*
+percentage_*
 
 **/*.old
 
