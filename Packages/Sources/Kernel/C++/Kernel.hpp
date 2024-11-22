@@ -65,25 +65,6 @@ public:
     initialize(format.channelCount, format.sampleRate, maxDelayMilliseconds);
   }
 
-  /**
-   Process an AU parameter value change by updating the kernel.
-
-   @param address the address of the parameter that changed
-   @param value the new value for the parameter
-   */
-  void setParameterValuePending(AUParameterAddress address, AUValue value) noexcept;
-
-  AUValue getParameterValuePending(AUParameterAddress address) const noexcept;
-
-  /**
-   Process an AU parameter value change by updating the kernel.
-
-   @param address the address of the parameter that changed
-   @param value the new value for the parameter
-   @param duration the number of samples to adjust over
-   */
-  AUAudioFrameCount setRampedParameterValue(AUParameterAddress address, AUValue value, AUAudioFrameCount duration) noexcept;
-
 private:
   using DelayLine = DSPHeaders::DelayBuffer<AUValue>;
   using LFO = DSPHeaders::LFO<AUValue>;
@@ -92,7 +73,7 @@ private:
     maxDelayMilliseconds_ = maxDelayMilliseconds;
     samplesPerMillisecond_ = sampleRate / 1000.0;
 
-    auto rate{rate_.get()};
+    auto rate{rate_.frameValue()};
     for (int index = 0; index < lfos_.size(); ++index) {
       auto& lfo{lfos_[index]};
       lfo.setSampleRate(sampleRate);
@@ -108,6 +89,41 @@ private:
     }
   }
 
+  /**
+   Set a paramete value from within the render loop.
+
+   @param address the parameter to change
+   @param value the new value to use
+   @param duration the ramping duration to transition to the new value
+   */
+  bool doSetImmediateParameterValue(AUParameterAddress address, AUValue value, AUAudioFrameCount duration) noexcept;
+
+  /**
+   Set a paramete value from the UI via the parameter tree. Will be recognized and handled in the next render pass.
+
+   @param address the parameter to change
+   @param value the new value to use
+   */
+  bool doSetPendingParameterValue(AUParameterAddress address, AUValue value) noexcept;
+
+  /**
+   Get the paramete value last set in the render thread. NOTE: this does not account for any ramping that might be in
+   effect.
+
+   @param address the parameter to access
+   @returns parameter value
+   */
+  AUValue doGetImmediateParameterValue(AUParameterAddress address) const noexcept;
+
+  /**
+   Get the paramete value last set by the UI / parameter tree. NOTE: this does not account for any ramping that might
+   be in effect.
+
+   @param address the parameter to access
+   @returns parameter value
+   */
+  AUValue doGetPendingParameterValue(AUParameterAddress address) const noexcept;
+
   void setRatePending(AUValue rate) {
     rate_.setPending(rate);
     for(auto& lfo : lfos_) {
@@ -115,15 +131,11 @@ private:
     }
   }
 
-  void setRateRamping(AUValue rate, AUAudioFrameCount rampingDuration) {
-    rate_.set(rate, rampingDuration);
+  void setRateImmediate(AUValue rate, AUAudioFrameCount rampingDuration) {
+    rate_.setImmediate(rate, rampingDuration);
     for(auto& lfo : lfos_) {
       lfo.setFrequency(rate, rampingDuration);
     }
-  }
-
-  AUAudioFrameCount doParameterEvent(const AUParameterEvent& event, AUAudioFrameCount duration) noexcept {
-    return setRampedParameterValue(event.parameterAddress, event.value, duration);
   }
 
   void doRenderingStateChanged(bool rendering) {}
@@ -166,18 +178,18 @@ private:
 
   void doRendering(NSInteger outputBusNumber, DSPHeaders::BusBuffers ins, DSPHeaders::BusBuffers outs,
                    AUAudioFrameCount frameCount) noexcept {
-    auto odd90 = odd90_.get();
+    auto odd90 = odd90_.frameValue();
     if (frameCount == 1) {
       auto nominal = delay_.frameValue();
       auto displacementFraction = depth_.frameValue();
       calcTaps(nominal, calcDisplacement(nominal, displacementFraction), odd90);
       writeSample(ins, outs, odd90, wetMix_.frameValue(), dryMix_.frameValue());
     } else {
-      auto nominal = delay_.get();
-      auto displacementFraction = depth_.get();
+      auto nominal = delay_.frameValue();
+      auto displacementFraction = depth_.frameValue();
       auto displacement = calcDisplacement(nominal, displacementFraction);
-      auto wetMix = wetMix_.get();
-      auto dryMix = dryMix_.get();
+      auto wetMix = wetMix_.frameValue();
+      auto dryMix = dryMix_.frameValue();
       for (; frameCount > 0; --frameCount) {
         calcTaps(nominal, displacement, odd90);
         writeSample(ins, outs, odd90, wetMix, dryMix);

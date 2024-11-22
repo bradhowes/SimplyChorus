@@ -5,31 +5,43 @@
 
 @import ParameterAddress;
 
-AUAudioFrameCount Kernel::setRampedParameterValue(AUParameterAddress address, AUValue value, AUAudioFrameCount duration) noexcept {
+bool Kernel::doSetImmediateParameterValue(AUParameterAddress address, AUValue value, AUAudioFrameCount duration) noexcept {
   switch (address) {
-    case ParameterAddressRate: setRateRamping(value, duration); return duration;
-    case ParameterAddressDepth: depth_.set(value, duration); return duration;
-    case ParameterAddressDelay: delay_.set(value, duration); return duration;
-    case ParameterAddressDry: dryMix_.set(value, duration); return duration;
-    case ParameterAddressWet: wetMix_.set(value, duration); return duration;
-    case ParameterAddressOdd90: odd90_.set(value, duration); return 0;
+    case ParameterAddressRate: setRateImmediate(value, duration); return true;
+    case ParameterAddressDepth: depth_.setImmediate(value, duration); return true;
+    case ParameterAddressDelay: delay_.setImmediate(value, duration); return true;
+    case ParameterAddressDry: dryMix_.setImmediate(value, duration); return true;
+    case ParameterAddressWet: wetMix_.setImmediate(value, duration); return true;
+    case ParameterAddressOdd90: odd90_.setImmediate(value, duration); return true;
   }
-  return 0;
+  return false;
 }
 
-void Kernel::setParameterValuePending(AUParameterAddress address, AUValue value) noexcept {
+bool Kernel::doSetPendingParameterValue(AUParameterAddress address, AUValue value) noexcept {
   switch (address) {
-    case ParameterAddressRate: setRatePending(value); break;
-    case ParameterAddressDepth: depth_.setPending(value); break;
-    case ParameterAddressDelay: delay_.setPending(value); break;
-    case ParameterAddressDry: dryMix_.setPending(value); break;
-    case ParameterAddressWet: wetMix_.setPending(value); break;
-    case ParameterAddressOdd90: odd90_.setPending(value); break;
+    case ParameterAddressRate: setRatePending(value); return true;
+    case ParameterAddressDepth: depth_.setPending(value); return true;
+    case ParameterAddressDelay: delay_.setPending(value); return true;
+    case ParameterAddressDry: dryMix_.setPending(value); return true;
+    case ParameterAddressWet: wetMix_.setPending(value); return true;
+    case ParameterAddressOdd90: odd90_.setPending(value); return true;
   }
-  return 0;
+  return false;
 }
 
-AUValue Kernel::getParameterValuePending(AUParameterAddress address) const noexcept {
+AUValue Kernel::doGetImmediateParameterValue(AUParameterAddress address) const noexcept {
+  switch (address) {
+    case ParameterAddressRate: return rate_.getImmediate();
+    case ParameterAddressDepth: return depth_.getImmediate();
+    case ParameterAddressDelay: return delay_.getImmediate();
+    case ParameterAddressDry: return dryMix_.getImmediate();
+    case ParameterAddressWet: return wetMix_.getImmediate();
+    case ParameterAddressOdd90: return odd90_.getImmediate();
+  }
+  return 0.0;
+}
+
+AUValue Kernel::doGetPendingParameterValue(AUParameterAddress address) const noexcept {
   switch (address) {
     case ParameterAddressRate: return rate_.getPending();
     case ParameterAddressDepth: return depth_.getPending();
