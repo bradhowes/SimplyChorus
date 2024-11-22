@@ -25,25 +25,26 @@
   AVAudioFormat* format = [[AVAudioFormat alloc] initStandardFormatWithSampleRate:44100.0 channels:2];
   kernel->setRenderingFormat(1, format, 100, 20.0);
 
-  kernel->setParameterValuePending(ParameterAddressDepth, 13.5);
-  XCTAssertEqualWithAccuracy(kernel->getParameterValuePending(ParameterAddressDepth), 13.5, _epsilon);
+  kernel->setParameterValue(ParameterAddressDepth, 13.5);
+  XCTAssertEqualWithAccuracy(kernel->getParameterValue(ParameterAddressDepth), 13.5, _epsilon);
 
-  kernel->setParameterValuePending(ParameterAddressRate, 30.0);
-  XCTAssertEqualWithAccuracy(kernel->getParameterValuePending(ParameterAddressRate), 30.0, _epsilon);
+  kernel->setParameterValue(ParameterAddressRate, 30.0);
+  XCTAssertEqualWithAccuracy(kernel->getParameterValue(ParameterAddressRate), 30.0, _epsilon);
 
-  kernel->setParameterValuePending(ParameterAddressDelay, 20.0);
-  XCTAssertEqualWithAccuracy(kernel->getParameterValuePending(ParameterAddressDelay), 20.0, _epsilon);
+  kernel->setParameterValue(ParameterAddressDelay, 20.0);
+  XCTAssertEqualWithAccuracy(kernel->getParameterValue(ParameterAddressDelay), 20.0, _epsilon);
 
-  kernel->setParameterValuePending(ParameterAddressDry, 50.0);
-  XCTAssertEqualWithAccuracy(kernel->getParameterValuePending(ParameterAddressDry), 50.0, _epsilon);
+  kernel->setParameterValue(ParameterAddressDry, 50.0);
+  XCTAssertEqualWithAccuracy(kernel->getParameterValue(ParameterAddressDry), 50.0, _epsilon);
 
-  kernel->setParameterValuePending(ParameterAddressWet, 60.0);
-  XCTAssertEqualWithAccuracy(kernel->getParameterValuePending(ParameterAddressWet), 60.0, _epsilon);
+  kernel->setParameterValue(ParameterAddressWet, 60.0);
+  XCTAssertEqualWithAccuracy(kernel->getParameterValue(ParameterAddressWet), 60.0, _epsilon);
 
-  kernel->setParameterValuePending(ParameterAddressOdd90, 0.0);
-  XCTAssertEqualWithAccuracy(kernel->getParameterValuePending(ParameterAddressOdd90), 0.0, _epsilon);
-  kernel->setParameterValuePending(ParameterAddressOdd90, 1.0);
-  XCTAssertEqualWithAccuracy(kernel->getParameterValuePending(ParameterAddressOdd90), 1.0, _epsilon);
+  kernel->setParameterValue(ParameterAddressOdd90, 0.0);
+  XCTAssertEqualWithAccuracy(kernel->getParameterValue(ParameterAddressOdd90), 0.0, _epsilon);
+
+  kernel->setParameterValue(ParameterAddressOdd90, 1.0);
+  XCTAssertEqualWithAccuracy(kernel->getParameterValue(ParameterAddressOdd90), 1.0, _epsilon);
 }
 
 - (void)testRendering {
@@ -77,12 +78,12 @@
   AVAudioFormat* format = [[AVAudioFormat alloc] initStandardFormatWithSampleRate:44100.0 channels:2];
   kernel.setRenderingFormat(1, format, 512, 50.0);
 
-  kernel.setRampedParameterValue(ParameterAddressDelay, 5.0, 0);
-  kernel.setRampedParameterValue(ParameterAddressDepth, 13.0, 0);
-  kernel.setRampedParameterValue(ParameterAddressRate, 4.0, 0);
-  kernel.setRampedParameterValue(ParameterAddressDry, 50.0, 0);
-  kernel.setRampedParameterValue(ParameterAddressWet, 50.0, 0);
-  kernel.setRampedParameterValue(ParameterAddressOdd90, 0.0, 0);
+  kernel.setParameterValue(ParameterAddressDelay, 5.0);
+  kernel.setParameterValue(ParameterAddressDepth, 13.0);
+  kernel.setParameterValue(ParameterAddressRate, 4.0);
+  kernel.setParameterValue(ParameterAddressDry, 50.0);
+  kernel.setParameterValue(ParameterAddressWet, 50.0);
+  kernel.setParameterValue(ParameterAddressOdd90, 0.0);
 
   AUAudioFrameCount frames = maxFrames;
   AVAudioPCMBuffer* buffer = [[AVAudioPCMBuffer alloc] initWithPCMFormat:format frameCapacity:maxFrames];
@@ -133,14 +134,14 @@
   AVAudioFormat* format = [[AVAudioFormat alloc] initStandardFormatWithSampleRate:44100.0 channels:2];
   kernel.setRenderingFormat(1, format, 512, 50.0);
 
-  kernel.setRampedParameterValue(ParameterAddressDelay, 5.0, 0);
-  kernel.setRampedParameterValue(ParameterAddressDepth, 13.0, 0);
-  kernel.setRampedParameterValue(ParameterAddressRate, 4.0, 0);
-  kernel.setRampedParameterValue(ParameterAddressDry, 50.0, 0);
-  kernel.setRampedParameterValue(ParameterAddressWet, 50.0, 0);
-  kernel.setRampedParameterValue(ParameterAddressOdd90, 0.0, 0);
+  kernel.setParameterValue(ParameterAddressDelay, 5.0);
+  kernel.setParameterValue(ParameterAddressDepth, 13.0);
+  kernel.setParameterValue(ParameterAddressRate, 4.0);
+  kernel.setParameterValue(ParameterAddressDry, 50.0);
+  kernel.setParameterValue(ParameterAddressWet, 50.0);
+  kernel.setParameterValue(ParameterAddressOdd90, 0.0);
 
-  kernel.setRampedParameterValue(ParameterAddressDepth, 1.0, 64);
+  kernel.setParameterValue(ParameterAddressDepth, 1.0);
 
   AUAudioFrameCount frames = maxFrames;
   AVAudioPCMBuffer* buffer = [[AVAudioPCMBuffer alloc] initWithPCMFormat:format frameCapacity:maxFrames];
