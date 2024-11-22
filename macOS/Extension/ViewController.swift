@@ -21,7 +21,7 @@ extension Knob: @retroactive AUParameterValueProvider, @retroactive RangedContro
 
   private let parameters = Parameters()
   private var viewConfig: AUAudioUnitViewConfiguration!
-  private var keyValueObserverToken: NSKeyValueObservation?
+  private var versionTagValue: String = ""
 
   @IBOutlet private weak var controlsView: NSView!
 
@@ -41,6 +41,8 @@ extension Knob: @retroactive AUParameterValueProvider, @retroactive RangedContro
   @IBOutlet private weak var dryMixValueLabel: FocusAwareTextField!
 
   @IBOutlet private weak var odd90Control: NSSwitch!
+
+  @IBOutlet private weak var versionTag: NSTextField!
 
   private lazy var controls: [ParameterAddress: (Knob, FocusAwareTextField)] = [
     .rate: (rateControl, rateValueLabel),
@@ -82,6 +84,10 @@ public extension ViewController {
     os_log(.info, log: log, "viewDidLoad END")
   }
 
+  override func viewDidAppear() {
+    versionTag.text = versionTagValue
+  }
+
   override func mouseDown(with event: NSEvent) {
     // Allow for clicks on the common NSView to end editing of values
     NSApp.keyWindow?.makeFirstResponder(nil)
@@ -96,11 +102,18 @@ extension ViewController: AudioUnitViewConfigurationManager {}
 
 extension ViewController: AUAudioUnitFactory {
   @objc public func createAudioUnit(with componentDescription: AudioComponentDescription) throws -> AUAudioUnit {
-    let kernel = KernelBridge(Bundle.main.auBaseName, maxDelayMilliseconds: parameters[.delay].maxValue,
-                              numLFOs: 1)
-    let audioUnit = try FilterAudioUnitFactory.create(componentDescription: componentDescription,
-                                                      parameters: parameters, kernel: kernel,
-                                                      viewConfigurationManager: self)
+    let bundle = InternalConstants.bundle
+    let kernel = KernelBridge(
+      Bundle.main.auBaseName,
+      maxDelayMilliseconds: parameters[.delay].maxValue,
+      numLFOs: 1
+    )
+    let audioUnit = try FilterAudioUnitFactory.create(
+      componentDescription: componentDescription,
+      parameters: parameters, kernel: kernel,
+      viewConfigurationManager: self
+    )
+    self.versionTagValue = bundle.versionTag
     self.audioUnit = audioUnit
     return audioUnit
   }
@@ -182,4 +195,9 @@ private extension ViewController {
 
     editor.controlChanged(source: control)
   }
+}
+
+private enum InternalConstants {
+  private class EmptyClass {}
+  static let bundle = Bundle(for: InternalConstants.EmptyClass.self)
 }
