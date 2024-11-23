@@ -52,6 +52,8 @@ extension Knob: @retroactive AUParameterValueProvider, @retroactive RangedContro
 
   @IBOutlet weak var odd90Control: Switch!
 
+  @IBOutlet weak var versionTag: UILabel!
+
   private lazy var controls: [ParameterAddress: [(Knob, Label, UIView)]] = [
     .rate: [(rateControl, rateValueLabel, rateTapEdit),
            (altRateControl, altRateValueLabel, altRateTapEdit)],
@@ -114,13 +116,25 @@ extension ViewController: AudioUnitViewConfigurationManager {}
 
 // MARK: - AUAudioUnitFactory
 
-extension ViewController: AUAudioUnitFactory {
+extension ViewController: @preconcurrency AUAudioUnitFactory {
   @objc public func createAudioUnit(with componentDescription: AudioComponentDescription) throws -> AUAudioUnit {
-    let kernel = KernelBridge(Bundle.main.auBaseName, maxDelayMilliseconds: parameters[.delay].maxValue,
-                              numLFOs: 1)
-    let audioUnit = try FilterAudioUnitFactory.create(componentDescription: componentDescription,
-                                                      parameters: parameters, kernel: kernel,
-                                                      viewConfigurationManager: self)
+    let bundle = InternalConstants.bundle
+
+    DispatchQueue.main.async {
+      self.versionTag.text = bundle.versionTag
+    }
+
+    let kernel = KernelBridge(
+      Bundle.main.auBaseName,
+      maxDelayMilliseconds: parameters[.delay].maxValue,
+      numLFOs: 1
+    )
+    let audioUnit = try FilterAudioUnitFactory.create(
+      componentDescription: componentDescription,
+      parameters: parameters,
+      kernel: kernel,
+      viewConfigurationManager: self
+    )
     self.audioUnit = audioUnit
     return audioUnit
   }
@@ -212,4 +226,9 @@ extension ViewController {
 
     os_log(.debug, log: log, "handleControlChanged END")
   }
+}
+
+private enum InternalConstants {
+  private class EmptyClass {}
+  static let bundle = Bundle(for: InternalConstants.EmptyClass.self)
 }

@@ -836,6 +836,8 @@
 				MACOSX_DEPLOYMENT_TARGET = 14.6;
 				MARKETING_VERSION = "$(MARKETING_VERSION)";
 				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_UPCOMING_FEATURE_GLOBAL_CONCURRENCY = YES;
+				SWIFT_UPCOMING_FEATURE_REGION_BASED_ISOLATION = YES;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1162,6 +1164,8 @@
 				MARKETING_VERSION = "$(MARKETING_VERSION)";
 				ONLY_ACTIVE_ARCH = YES;
 				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_UPCOMING_FEATURE_GLOBAL_CONCURRENCY = YES;
+				SWIFT_UPCOMING_FEATURE_REGION_BASED_ISOLATION = YES;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1537,16 +1541,16 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/bradhowes/knob";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 3.0.0;
+				kind = exactVersion;
+				version = 3.0.4;
 			};
 		};
 		BDD083EF29628E200098859A /* XCRemoteSwiftPackageReference "AUv3Support" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/bradhowes/AUv3Support";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 14.0.1;
+				kind = exactVersion;
+				version = 14.0.4;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

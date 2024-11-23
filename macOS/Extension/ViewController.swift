@@ -100,9 +100,10 @@ extension ViewController: AudioUnitViewConfigurationManager {}
 
 // MARK: - AUAudioUnitFactory
 
-extension ViewController: AUAudioUnitFactory {
+extension ViewController: @preconcurrency AUAudioUnitFactory {
   @objc public func createAudioUnit(with componentDescription: AudioComponentDescription) throws -> AUAudioUnit {
     let bundle = InternalConstants.bundle
+
     let kernel = KernelBridge(
       Bundle.main.auBaseName,
       maxDelayMilliseconds: parameters[.delay].maxValue,
