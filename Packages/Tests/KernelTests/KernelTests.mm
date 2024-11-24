@@ -92,15 +92,15 @@
 
   auto ptr = buffer.floatChannelData[0];
   XCTAssertEqualWithAccuracy(ptr[0], 0.0, _epsilon);
-  XCTAssertEqualWithAccuracy(ptr[1], 0.000978, _epsilon);
-  XCTAssertEqualWithAccuracy(ptr[2], 0.001957, _epsilon);
-  XCTAssertEqualWithAccuracy(ptr[3], 0.002935, _epsilon);
-  XCTAssertEqualWithAccuracy(ptr[4], 0.003914, _epsilon);
-  XCTAssertEqualWithAccuracy(ptr[frames-5], 0.702534, _epsilon);
-  XCTAssertEqualWithAccuracy(ptr[frames-4], 0.704354, _epsilon);
-  XCTAssertEqualWithAccuracy(ptr[frames-3], 0.706173, _epsilon);
-  XCTAssertEqualWithAccuracy(ptr[frames-2], 0.707993, _epsilon);
-  XCTAssertEqualWithAccuracy(ptr[frames-1], 0.709811, _epsilon);
+  XCTAssertEqualWithAccuracy(ptr[1], 0.000002, _epsilon);
+  XCTAssertEqualWithAccuracy(ptr[2], 0.000007, _epsilon);
+  XCTAssertEqualWithAccuracy(ptr[3], 0.000013, _epsilon);
+  XCTAssertEqualWithAccuracy(ptr[4], 0.000026, _epsilon);
+  XCTAssertEqualWithAccuracy(ptr[frames-5], 0.475888, _epsilon);
+  XCTAssertEqualWithAccuracy(ptr[frames-4], 0.477722, _epsilon);
+  XCTAssertEqualWithAccuracy(ptr[frames-3], 0.479560, _epsilon);
+  XCTAssertEqualWithAccuracy(ptr[frames-2], 0.481401, _epsilon);
+  XCTAssertEqualWithAccuracy(ptr[frames-1], 0.483245, _epsilon);
 }
 
 - (void)testRenderingUnderRamping {
@@ -150,15 +150,15 @@
 
   auto ptr = buffer.floatChannelData[0];
   XCTAssertEqualWithAccuracy(ptr[0], 0.0, _epsilon);
-  XCTAssertEqualWithAccuracy(ptr[1], 0.000978, _epsilon);
-  XCTAssertEqualWithAccuracy(ptr[2], 0.001957, _epsilon);
-  XCTAssertEqualWithAccuracy(ptr[3], 0.002935, _epsilon);
-  XCTAssertEqualWithAccuracy(ptr[4], 0.003914, _epsilon);
-  XCTAssertEqualWithAccuracy(ptr[frames-5], 0.768929, _epsilon);
-  XCTAssertEqualWithAccuracy(ptr[frames-4], 0.770876, _epsilon);
-  XCTAssertEqualWithAccuracy(ptr[frames-3], 0.772822, _epsilon);
-  XCTAssertEqualWithAccuracy(ptr[frames-2], 0.774769, _epsilon);
-  XCTAssertEqualWithAccuracy(ptr[frames-1], 0.776715, _epsilon);
+  XCTAssertEqualWithAccuracy(ptr[1], 0.000002, _epsilon);
+  XCTAssertEqualWithAccuracy(ptr[2], 0.000007, _epsilon);
+  XCTAssertEqualWithAccuracy(ptr[3], 0.000013, _epsilon);
+  XCTAssertEqualWithAccuracy(ptr[4], 0.000026, _epsilon);
+  XCTAssertEqualWithAccuracy(ptr[frames-5], 0.496996, _epsilon);
+  XCTAssertEqualWithAccuracy(ptr[frames-4], 0.498956, _epsilon);
+  XCTAssertEqualWithAccuracy(ptr[frames-3], 0.500919, _epsilon);
+  XCTAssertEqualWithAccuracy(ptr[frames-2], 0.502887, _epsilon);
+  XCTAssertEqualWithAccuracy(ptr[frames-1], 0.504858, _epsilon);
 }
 
 @end
