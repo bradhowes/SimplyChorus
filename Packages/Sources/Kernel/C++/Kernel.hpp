@@ -4,7 +4,6 @@
 
 #import <os/log.h>
 #import <algorithm>
-#import <array>
 #import <string>
 #import <tuple>
 #import <vector>
@@ -17,6 +16,8 @@
 #import "DSPHeaders/Parameters/Bool.hpp"
 #import "DSPHeaders/Parameters/Milliseconds.hpp"
 #import "DSPHeaders/Parameters/Percentage.hpp"
+
+@import ParameterAddress;
 
 /**
  The audio processing kernel that generates a "chorus" effect by combining an audio signal with a slightly delayed copy
@@ -38,17 +39,8 @@ public:
   Kernel(std::string name, size_t lfoCount = 10) noexcept :
   super(), name_{name}, lfoCount_{lfoCount}, log_{os_log_create(name_.c_str(), "Kernel")}
   {
-    assert(lfoCount <= MAX_LFOS);
     os_log_debug(log_, "constructor");
-    registerParameter(rate_);
-    registerParameter(depth_);
-    registerParameter(delay_);
-    registerParameter(dryMix_);
-    registerParameter(wetMix_);
-    registerParameter(odd90_);
-    for(auto& lfo : lfos_) {
-      registerParameter(lfo.frequencyParameter());
-    }
+    registerParameters({rate_, depth_, delay_, dryMix_, wetMix_, odd90_});
   }
 
   /**
@@ -73,13 +65,13 @@ private:
     maxDelayMilliseconds_ = maxDelayMilliseconds;
     samplesPerMillisecond_ = sampleRate / 1000.0;
 
-    auto rate{rate_.frameValue()};
-    for (int index = 0; index < lfos_.size(); ++index) {
-      auto& lfo{lfos_[index]};
-      lfo.setSampleRate(sampleRate);
-      lfo.setWaveform(LFOWaveform::sinusoid);
-      lfo.setFrequency(rate, 0.0);
-      lfo.setPhase(index / lfos_.size());
+    lfos_.clear();
+    taps_.clear();
+
+    for (int index = 0; index < lfoCount_; ++index) {
+      lfos_.emplace_back(rate_, AUValue(sampleRate));
+      lfos_.back().setPhase(index / lfoCount_);
+      taps_.emplace_back(0.0, 0.0);
     }
 
     auto size = maxDelayMilliseconds * samplesPerMillisecond_ * 2 + 1;
@@ -88,57 +80,6 @@ private:
       delayLines_.emplace_back(size, DelayLine::Interpolator::cubic4thOrder);
     }
   }
-
-  /**
-   Set a paramete value from within the render loop.
-
-   @param address the parameter to change
-   @param value the new value to use
-   @param duration the ramping duration to transition to the new value
-   */
-  bool doSetImmediateParameterValue(AUParameterAddress address, AUValue value, AUAudioFrameCount duration) noexcept;
-
-  /**
-   Set a paramete value from the UI via the parameter tree. Will be recognized and handled in the next render pass.
-
-   @param address the parameter to change
-   @param value the new value to use
-   */
-  bool doSetPendingParameterValue(AUParameterAddress address, AUValue value) noexcept;
-
-  /**
-   Get the paramete value last set in the render thread. NOTE: this does not account for any ramping that might be in
-   effect.
-
-   @param address the parameter to access
-   @returns parameter value
-   */
-  AUValue doGetImmediateParameterValue(AUParameterAddress address) const noexcept;
-
-  /**
-   Get the paramete value last set by the UI / parameter tree. NOTE: this does not account for any ramping that might
-   be in effect.
-
-   @param address the parameter to access
-   @returns parameter value
-   */
-  AUValue doGetPendingParameterValue(AUParameterAddress address) const noexcept;
-
-  void setRatePending(AUValue rate) {
-    rate_.setPending(rate);
-    for(auto& lfo : lfos_) {
-      lfo.setFrequencyPending(rate);
-    }
-  }
-
-  void setRateImmediate(AUValue rate, AUAudioFrameCount rampingDuration) {
-    rate_.setImmediate(rate, rampingDuration);
-    for(auto& lfo : lfos_) {
-      lfo.setFrequency(rate, rampingDuration);
-    }
-  }
-
-  void doRenderingStateChanged(bool rendering) {}
 
   AUValue generate(AUValue inputSample, const DelayLine& delayLine, bool isEven) const noexcept {
     AUValue output{0.0};
@@ -161,7 +102,9 @@ private:
   std::tuple<AUValue, AUValue> calcTap(LFO& lfo, AUValue nominalMilliseconds, AUValue displacementMilliseconds,
                                        bool odd90) noexcept {
     auto evenTap = (nominalMilliseconds + lfo.value() * displacementMilliseconds) * samplesPerMillisecond_;
-    auto oddTap = odd90 ? (nominalMilliseconds + lfo.quadPhaseValue() * displacementMilliseconds) * samplesPerMillisecond_ : evenTap;
+    auto oddTap = (odd90
+                   ? (nominalMilliseconds + lfo.quadPhaseValue() * displacementMilliseconds) * samplesPerMillisecond_
+                   : evenTap);
     lfo.increment();
     return {evenTap, oddTap};
   }
@@ -197,22 +140,20 @@ private:
     }
   }
 
-  void doMIDIEvent(const AUMIDIEvent& midiEvent) noexcept {}
-
-  DSPHeaders::Parameters::Milliseconds rate_;
-  DSPHeaders::Parameters::Percentage depth_;
-  DSPHeaders::Parameters::Milliseconds delay_;
-  DSPHeaders::Parameters::Percentage dryMix_;
-  DSPHeaders::Parameters::Percentage wetMix_;
-  DSPHeaders::Parameters::Bool odd90_;
+  DSPHeaders::Parameters::Float rate_{ParameterAddressRate};
+  DSPHeaders::Parameters::Percentage depth_{ParameterAddressDepth};
+  DSPHeaders::Parameters::Milliseconds delay_{ParameterAddressDelay};
+  DSPHeaders::Parameters::Percentage dryMix_{ParameterAddressDry};
+  DSPHeaders::Parameters::Percentage wetMix_{ParameterAddressWet};
+  DSPHeaders::Parameters::Bool odd90_{ParameterAddressOdd90};
 
   size_t lfoCount_;
   double samplesPerMillisecond_;
   double maxDelayMilliseconds_{0};
 
   std::vector<DelayLine> delayLines_;
-  std::array<LFO, MAX_LFOS> lfos_{};
-  std::array<std::tuple<AUValue, AUValue>, MAX_LFOS> taps_{};
+  std::vector<LFO> lfos_{};
+  std::vector<std::tuple<AUValue, AUValue>> taps_{};
   std::string name_;
   os_log_t log_;
 
