@@ -1,4 +1,4 @@
-// swift-tools-version:5.9
+// swift-tools-version:6.0
 
 import PackageDescription
 
@@ -12,7 +12,7 @@ let package = Package(
     .library(name: "ParameterAddress", targets: ["ParameterAddress"])
   ],
   dependencies: [
-    .package(url: "https://github.com/bradhowes/AUv3Support", exact: "15.0.2")
+    .package(url: "https://github.com/bradhowes/AUv3Support", exact: "16.0.0")
     // .package(name: "AUv3SupportPackage", path: "/Users/howes/src/Mine/AUv3Support")
   ],
   targets: [
