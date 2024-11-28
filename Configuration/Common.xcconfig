@@ -30,7 +30,7 @@ AU_FACTORY_FUNCTION = SimplyChorusAU.ViewController
 COPYRIGHT_NOTICE = Copyright © 2024 B-Ray Software
 
 // The "build" version -- the `bumpVersions.py -b` option sets this to a date/time stamp
-CURRENT_PROJECT_VERSION = 20241122214535
+CURRENT_PROJECT_VERSION = 20241122214536
 
 // The visible version (eg. 1.2.3)
 MARKETING_VERSION = 3.5.0

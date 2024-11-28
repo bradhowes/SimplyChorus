@@ -12,7 +12,7 @@ let package = Package(
     .library(name: "ParameterAddress", targets: ["ParameterAddress"])
   ],
   dependencies: [
-    .package(url: "https://github.com/bradhowes/AUv3Support", exact: "16.0.0")
+    .package(url: "https://github.com/bradhowes/AUv3Support", exact: "16.0.2")
     // .package(name: "AUv3SupportPackage", path: "/Users/howes/src/Mine/AUv3Support")
   ],
   targets: [
