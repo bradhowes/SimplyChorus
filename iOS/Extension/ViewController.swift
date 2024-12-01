@@ -9,8 +9,6 @@ import ParameterAddress
 import Parameters
 import os.log
 
-extension Knob: @retroactive AUParameterValueProvider, @retroactive RangedControl {}
-
 /**
  Controller for the AUv3 filter view. Handles wiring up of the controls with AUParameter settings.
  */
@@ -19,9 +17,7 @@ extension Knob: @retroactive AUParameterValueProvider, @retroactive RangedContro
   // NOTE: this special form sets the subsystem name and must run before any other logger calls.
   private let log = Shared.logger(Bundle.main.auBaseName + "AU", "ViewController")
 
-  private let parameters = Parameters()
   private var viewConfig: AUAudioUnitViewConfiguration!
-  private var keyValueObserverToken: NSKeyValueObservation?
 
   @IBOutlet weak var titleLabel: UILabel!
   @IBOutlet weak var controlsView: View!
@@ -52,8 +48,6 @@ extension Knob: @retroactive AUParameterValueProvider, @retroactive RangedContro
 
   @IBOutlet weak var odd90Control: Switch!
 
-  @IBOutlet weak var versionTag: UILabel!
-
   private lazy var controls: [ParameterAddress: [(Knob, Label, UIView)]] = [
     .rate: [(rateControl, rateValueLabel, rateTapEdit),
            (altRateControl, altRateValueLabel, altRateTapEdit)],
@@ -75,7 +69,6 @@ extension Knob: @retroactive AUParameterValueProvider, @retroactive RangedContro
   @IBOutlet weak var editingLabel: Label!
   // Shows the name of the value being edited
   @IBOutlet weak var editingValue: UITextField!
-
   // The top constraint of the editingView. Set to 0 when loaded, but otherwise not used.
   @IBOutlet weak var editingViewTopConstraint: NSLayoutConstraint!
   // The bottom constraint of the editingBackground that controls the vertical position of the editor
@@ -116,27 +109,29 @@ extension ViewController: AudioUnitViewConfigurationManager {}
 
 // MARK: - AUAudioUnitFactory
 
-extension ViewController: @preconcurrency AUAudioUnitFactory {
-  @objc public func createAudioUnit(with componentDescription: AudioComponentDescription) throws -> AUAudioUnit {
-    let bundle = InternalConstants.bundle
+extension ViewController: AUAudioUnitFactory {
 
-    DispatchQueue.main.async {
-      self.versionTag.text = bundle.versionTag
+  nonisolated public func createAudioUnit(with componentDescription: AudioComponentDescription) throws -> AUAudioUnit {
+    try DispatchQueue.main.sync {
+      let bundle = InternalConstants.bundle
+      let parameters = Parameters()
+      let kernel = KernelBridge(
+        bundle.auBaseName,
+        maxDelayMilliseconds: parameters[.delay].maxValue,
+        numLFOs: 1
+      )
+
+      let audioUnit = try FilterAudioUnitFactory.create(
+        componentDescription: componentDescription,
+        parameters: parameters,
+        kernel: kernel,
+        viewConfigurationManager: self
+      )
+
+      self.audioUnit = audioUnit
+
+      return audioUnit
     }
-
-    let kernel = KernelBridge(
-      Bundle.main.auBaseName,
-      maxDelayMilliseconds: parameters[.delay].maxValue,
-      numLFOs: 1
-    )
-    let audioUnit = try FilterAudioUnitFactory.create(
-      componentDescription: componentDescription,
-      parameters: parameters,
-      kernel: kernel,
-      viewConfigurationManager: self
-    )
-    self.audioUnit = audioUnit
-    return audioUnit
   }
 }
 
@@ -156,6 +151,12 @@ extension ViewController {
   private func createEditors() {
     os_log(.info, log: log, "createEditors BEGIN")
 
+    guard let audioUnit,
+          let parameterTree = audioUnit.parameterTree
+    else {
+      return
+    }
+
     let knobColor = UIColor(named: "knob")!
 
     let valueEditor = ValueEditor(containerView: editingContainerView, backgroundView: editingBackground,
@@ -171,8 +172,8 @@ extension ViewController {
         knob.indicatorColor = knobColor
 
         knob.addTarget(self, action: #selector(handleKnobChanged(_:)), for: .valueChanged)
-        let editor = FloatParameterEditor(parameter: parameters[parameterAddress],
-                                          formatting: parameters[parameterAddress],
+        let editor = FloatParameterEditor(parameter: parameterTree[parameterAddress],
+                                          formatting: parameterTree[parameterAddress],
                                           rangedControl: knob, label: label)
         editor.delegate = self
 
@@ -187,7 +188,7 @@ extension ViewController {
     for (parameterAddress, control) in switches {
       os_log(.info, log: log, "createEditors - before BooleanParameterEditor")
       control.addTarget(self, action: #selector(handleSwitchChanged(_:)), for: .valueChanged)
-      let editor = BooleanParameterEditor(parameter: parameters[parameterAddress], booleanControl: control)
+      let editor = BooleanParameterEditor(parameter: parameterTree[parameterAddress], booleanControl: control)
       editors.append(editor)
       editorMap[parameterAddress] = [editor]
     }
@@ -206,12 +207,14 @@ extension ViewController {
   }
 
   private func handleControlChanged(_ control: AUParameterValueProvider, address: ParameterAddress) {
-    os_log(.debug, log: log, "handleControlChanged BEGIN - %d %f", address.rawValue, control.value)
-
-    guard let audioUnit = audioUnit else {
-      os_log(.debug, log: log, "handleControlChanged END - nil audioUnit")
+    guard let audioUnit,
+          let parameterTree = audioUnit.parameterTree
+    else {
       return
     }
+
+    os_log(.debug, log: log, "handleControlChanged BEGIN - %d %f %f", address.rawValue, control.value,
+           parameterTree[address].value)
 
     guard let editors = editorMap[address] else {
       os_log(.debug, log: log, "handleControlChanged END - nil editors")
@@ -231,4 +234,15 @@ extension ViewController {
 private enum InternalConstants {
   private class EmptyClass {}
   static let bundle = Bundle(for: InternalConstants.EmptyClass.self)
+}
+
+extension Knob: @retroactive AUParameterValueProvider, @retroactive RangedControl {}
+
+extension AUParameterTree {
+  fileprivate subscript (_ parameter: ParameterAddress) -> AUParameter {
+    guard let parameter = self.parameter(source: parameter) else {
+      fatalError("Unexpected parameter address \(parameter)")
+    }
+    return parameter
+  }
 }
