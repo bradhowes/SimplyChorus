@@ -25,7 +25,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" text="Chorus" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vbj-fp-p3P">
                                 <rect key="frame" x="-58" y="248.5" width="491" height="170"/>
                                 <fontDescription key="fontDescription" name="Desdemona" family="Desdemona" pointSize="148"/>
-                                <color key="textColor" name="title"/>
+                                <color key="textColor" name="titleColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GTt-pC-dYn" userLabel="Controls">
@@ -52,7 +52,7 @@
                                                                 <rect key="frame" x="39.5" y="112" width="41.5" height="24"/>
                                                                 <accessibility key="accessibilityConfiguration" identifier="1"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                                <color key="textColor" name="label"/>
+                                                                <color key="textColor" name="knobLabelColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8ki-wy-l3o" userLabel="TapEdit">
@@ -93,7 +93,7 @@
                                                                 <rect key="frame" x="39" y="112" width="42" height="24"/>
                                                                 <accessibility key="accessibilityConfiguration" identifier="1"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                                <color key="textColor" name="label"/>
+                                                                <color key="textColor" name="knobLabelColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zAJ-ok-Zg3" userLabel="TapEdit">
@@ -129,7 +129,7 @@
                                                                 <rect key="frame" x="39.5" y="112" width="41.5" height="24"/>
                                                                 <accessibility key="accessibilityConfiguration" identifier="2"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                                <color key="textColor" name="label"/>
+                                                                <color key="textColor" name="knobLabelColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u0R-Gv-5sv" userLabel="TapEdit">
@@ -164,7 +164,7 @@
                                                                 <rect key="frame" x="39.5" y="112" width="41.5" height="30"/>
                                                                 <accessibility key="accessibilityConfiguration" identifier="0"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                                <color key="textColor" name="label"/>
+                                                                <color key="textColor" name="knobLabelColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pew-k3-gBB" userLabel="TapEdit">
@@ -207,7 +207,7 @@
                                                                         <rect key="frame" x="22" y="72" width="36" height="21"/>
                                                                         <accessibility key="accessibilityConfiguration" identifier="4"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                        <color key="textColor" name="label"/>
+                                                                        <color key="textColor" name="knobLabelColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <view tag="4" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rYA-kZ-hpS" userLabel="TapEdit">
@@ -232,13 +232,13 @@
                                                                 <subviews>
                                                                     <switch opaque="NO" tag="6" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="olm-sN-GtT" userLabel="Odd 90°">
                                                                         <rect key="frame" x="37" y="0.0" width="51" height="31"/>
-                                                                        <color key="onTintColor" name="knob"/>
-                                                                        <color key="thumbTintColor" name="label"/>
+                                                                        <color key="onTintColor" name="knobProgressColor"/>
+                                                                        <color key="thumbTintColor" name="knobLabelColor"/>
                                                                     </switch>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Odd 90°" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Pj-Eh-BZS">
                                                                         <rect key="frame" x="35.5" y="35" width="52" height="16"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                                        <color key="textColor" name="label"/>
+                                                                        <color key="textColor" name="knobLabelColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
@@ -258,7 +258,7 @@
                                                                         <rect key="frame" x="22" y="72" width="36" height="21"/>
                                                                         <accessibility key="accessibilityConfiguration" identifier="5"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                        <color key="textColor" name="label"/>
+                                                                        <color key="textColor" name="knobLabelColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <view tag="5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lM5-yt-nYm" userLabel="TapEdit">
@@ -308,7 +308,7 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0gm-sU-zom">
                                                 <rect key="frame" x="16" y="23" width="41.5" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" name="label"/>
+                                                <color key="textColor" name="knobLabelColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="100.00" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="5xm-4x-x9O">
@@ -317,7 +317,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="160" id="dPh-GW-1UK"/>
                                                 </constraints>
-                                                <color key="textColor" name="label"/>
+                                                <color key="textColor" name="knobLabelColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numbersAndPunctuation" keyboardAppearance="alert" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                             </textField>
@@ -390,13 +390,13 @@
         </scene>
     </scenes>
     <resources>
-        <namedColor name="knob">
+        <namedColor name="knobProgressColor">
             <color red="1" green="0.22599999606609344" blue="0.84700000286102295" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="label">
+        <namedColor name="knobLabelColor">
             <color red="1" green="0.54100000858306885" blue="0.84700000286102295" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="title">
+        <namedColor name="titleColor">
             <color red="1" green="0.54100000858306885" blue="0.84700000286102295" alpha="0.34700000286102295" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>

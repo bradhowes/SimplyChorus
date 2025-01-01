@@ -5,7 +5,6 @@
 #import <os/log.h>
 #import <algorithm>
 #import <string>
-#import <tuple>
 #import <vector>
 #import <AVFoundation/AVFoundation.h>
 
@@ -81,7 +80,7 @@ private:
     }
   }
 
-  AUValue generate(AUValue inputSample, const DelayLine& delayLine, bool isEven) const noexcept {
+  AUValue generateSample(AUValue inputSample, const DelayLine& delayLine, bool isEven) const noexcept {
     AUValue output{0.0};
     for (size_t index = 0; index < lfoCount_; ++index) {
       const auto& tap{taps_[index]};
@@ -90,10 +89,11 @@ private:
     return output / lfoCount_;
   }
 
-  void writeSample(DSPHeaders::BusBuffers ins, DSPHeaders::BusBuffers outs, bool odd90, AUValue wetMix, AUValue dryMix) noexcept {
+  void generateFrame(DSPHeaders::BusBuffers ins, DSPHeaders::BusBuffers outs, bool odd90, AUValue wetMix,
+                     AUValue dryMix) noexcept {
     for (int channel = 0; channel < ins.size(); ++channel) {
       auto inputSample = *ins[channel]++;
-      AUValue outputSample = generate(inputSample, delayLines_[channel], channel & 1);
+      AUValue outputSample = generateSample(inputSample, delayLines_[channel], channel & 1);
       delayLines_[channel].write(inputSample);
       *outs[channel]++ = wetMix * outputSample + dryMix * inputSample;
     }
@@ -122,21 +122,14 @@ private:
   void doRendering(NSInteger outputBusNumber, DSPHeaders::BusBuffers ins, DSPHeaders::BusBuffers outs,
                    AUAudioFrameCount frameCount) noexcept {
     auto odd90 = odd90_.frameValue();
-    if (frameCount == 1) {
-      auto nominal = delay_.frameValue();
-      auto displacementFraction = depth_.frameValue();
-      calcTaps(nominal, calcDisplacement(nominal, displacementFraction), odd90);
-      writeSample(ins, outs, odd90, wetMix_.frameValue(), dryMix_.frameValue());
-    } else {
-      auto nominal = delay_.frameValue();
-      auto displacementFraction = depth_.frameValue();
-      auto displacement = calcDisplacement(nominal, displacementFraction);
-      auto wetMix = wetMix_.frameValue();
-      auto dryMix = dryMix_.frameValue();
-      for (; frameCount > 0; --frameCount) {
-        calcTaps(nominal, displacement, odd90);
-        writeSample(ins, outs, odd90, wetMix, dryMix);
-      }
+    auto nominal = delay_.frameValue();
+    auto displacementFraction = depth_.frameValue();
+    auto displacement = calcDisplacement(nominal, displacementFraction);
+    auto wetMix = wetMix_.frameValue();
+    auto dryMix = dryMix_.frameValue();
+    for (; frameCount > 0; --frameCount) {
+      calcTaps(nominal, displacement, odd90);
+      generateFrame(ins, outs, odd90, wetMix, dryMix);
     }
   }
 

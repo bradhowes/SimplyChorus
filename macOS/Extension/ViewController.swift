@@ -143,7 +143,7 @@ private extension ViewController {
       return
     }
 
-    let knobColor = NSColor(named: "knob")!
+    let knobColor = NSColor.knobProgress
 
     for (parameterAddress, (knob, label)) in controls {
       knob.progressColor = knobColor
