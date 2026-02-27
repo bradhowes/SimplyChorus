@@ -100,6 +100,8 @@ public extension ViewController {
     if audioUnit != nil {
       createEditors()
     }
+
+    odd90Control.thumbTintColor = .green
   }
 }
 
