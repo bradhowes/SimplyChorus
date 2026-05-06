@@ -12,6 +12,8 @@
 	<string>$(AU_COMPONENT_NAME)</string>
 	<key>AU_COMPONENT_SUBTYPE</key>
 	<string>$(AU_COMPONENT_SUBTYPE)</string>
+	<key>AU_COMPONENT_SUBTYPE - 2</key>
+	<string>$(AU_COMPONENT_SUBTYPE)</string>
 	<key>AU_COMPONENT_TYPE</key>
 	<string>$(AU_COMPONENT_TYPE)</string>
 	<key>AU_FACTORY_FUNCTION</key>
